@@ -3,14 +3,19 @@ package com.example.xpprojectgroupone.models;
 public class Activity {
 
     int id;
+    String name;
     String description;
     int equipmentId;
     int ageLimit;
     int heightLimit;
     double price;
 
-    public Activity(int id, String description, int equipmentId, int ageLimit, int heightLimit, double price) {
+    public Activity() {
+    }
+
+    public Activity(int id, String name, String description, int equipmentId, int ageLimit, int heightLimit, double price) {
         this.id = id;
+        this.name = name;
         this.description = description;
         this.equipmentId = equipmentId;
         this.ageLimit = ageLimit;
@@ -24,6 +29,14 @@ public class Activity {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {
