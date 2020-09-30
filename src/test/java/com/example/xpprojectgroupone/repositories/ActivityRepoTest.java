@@ -47,15 +47,22 @@ class ActivityRepoTest {
 
     @Test
     void update() {
-        Activity activity = new Activity();
-        //activity.setId(1);
-        activity.setName("Sumo");
-        activity.setHeightLimit(170);
-        activity.setAgeLimit(18);
-        activity.setDescription("hygge");
-        activity.setPrice(2500);
+        Activity activity = new Activity("Sumo","hygge", 170, 18,2500);
         activityRepo.create(activity);
-        assertEquals(activity.toString(),activityRepo.read(1).toString());
+        System.out.println(activity.getId());
+
+        activity.setName("Paintball");
+        activity.setHeightLimit(150);
+        activity.setAgeLimit(16);
+        activity.setDescription("Skyd din makker");
+        activity.setPrice(300);
+        activityRepo.update(activity);
+
+        System.out.println(activity.toString());
+        System.out.println(activityRepo.read(0));
+        assertEquals(activity.toString(),activityRepo.read(0).toString());
+
+        //Den returnere en boolean (false værdi..)
     }
 
     @Test

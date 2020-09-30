@@ -13,6 +13,14 @@ public class Activity {
     public Activity() {
     }
 
+    public Activity(String name, String description, int ageLimit, int heightLimit, double price){
+        this.name = name;
+        this.description = description;
+        this.ageLimit = ageLimit;
+        this.heightLimit = heightLimit;
+        this.price = price;
+    }
+
     public Activity(int id, String name, String description, int equipmentId, int ageLimit, int heightLimit, double price) {
         this.id = id;
         this.name = name;

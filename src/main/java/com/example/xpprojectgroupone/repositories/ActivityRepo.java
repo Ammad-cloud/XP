@@ -34,7 +34,7 @@ public class ActivityRepo {
  */
     public boolean create(Activity model) {
         try {
-            PreparedStatement createActivity = conn.prepareStatement("INSERT INTO Activity" + "(Name,Description, AgeLimit, HeightLimit, Price)VALUES" + "(?,?,?,?,?);");
+            PreparedStatement createActivity = conn.prepareStatement("INSERT INTO Activity" + "(name, description, ageLimit, heightLimit, price)VALUES" + "(?,?,?,?,?);");
             createActivity.setString(1, model.getName());
             createActivity.setString(2, model.getDescription());
             createActivity.setInt(3, model.getAgeLimit());
@@ -95,8 +95,8 @@ public class ActivityRepo {
 
     public boolean update(Activity activity) {
         try {
-            PreparedStatement myStmt = conn.prepareStatement("UPDATE Activity SET Name = ?, Description = ?, AgeLimit = ?, HeighLimit = ?, Price = ?  " +
-                    "WHERE activityId =" + activity.getId());
+            PreparedStatement myStmt = conn.prepareStatement("UPDATE Activity SET name = ?, description = ?, ageLimit = ?, heightLimit = ?, price = ?  " +
+                    "WHERE id =" + activity.getId());
             myStmt.setString(1, activity.getName());
             myStmt.setString(2, activity.getDescription());
             myStmt.setInt(3,activity.getAgeLimit());
@@ -115,7 +115,7 @@ public class ActivityRepo {
 
 
     public boolean delete(int id) {
-        String sql = "DELETE FROM Activity WHERE ActivityId = ?";
+        String sql = "DELETE FROM Activity WHERE id = ?";
         try {
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, id);
