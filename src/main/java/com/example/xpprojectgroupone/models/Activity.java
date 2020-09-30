@@ -26,6 +26,7 @@ public class Activity {
     @Override
     public String toString() {
         return "Activity{" +
+                "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", ageLimit=" + ageLimit +

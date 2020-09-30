@@ -74,7 +74,7 @@ public class ActivityRepo {
     public List<Activity> readAll() {
         List<Activity> allActivitys = new ArrayList<Activity>();
         try {
-            PreparedStatement ps = conn.prepareStatement("SELECT * FROM accessories");
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM Activity");
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Activity tempActivity = new Activity();
@@ -95,14 +95,13 @@ public class ActivityRepo {
 
     public boolean update(Activity activity) {
         try {
-            PreparedStatement myStmt = conn.prepareStatement("UPDATE Activity SET activityId = ?, Name = ?, Description = ?, AgeLimit = ?, HeighLimit = ?, Price = ?  " +
+            PreparedStatement myStmt = conn.prepareStatement("UPDATE Activity SET Name = ?, Description = ?, AgeLimit = ?, HeighLimit = ?, Price = ?  " +
                     "WHERE activityId =" + activity.getId());
-            myStmt.setInt(1, activity.getId());
-            myStmt.setString(2, activity.getName());
-            myStmt.setString(3, activity.getDescription());
-            myStmt.setInt(4,activity.getAgeLimit());
-            myStmt.setInt(5, activity.getHeightLimit());
-            myStmt.setDouble(6, activity.getPrice());
+            myStmt.setString(1, activity.getName());
+            myStmt.setString(2, activity.getDescription());
+            myStmt.setInt(3,activity.getAgeLimit());
+            myStmt.setInt(4, activity.getHeightLimit());
+            myStmt.setDouble(5, activity.getPrice());
 
 
             System.out.println(myStmt);
