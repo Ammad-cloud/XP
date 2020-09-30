@@ -23,6 +23,17 @@ public class Activity {
         this.price = price;
     }
 
+    @Override
+    public String toString() {
+        return "Activity{" +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", ageLimit=" + ageLimit +
+                ", heightLimit=" + heightLimit +
+                ", price=" + price +
+                '}';
+    }
+
     public int getId() {
         return id;
     }

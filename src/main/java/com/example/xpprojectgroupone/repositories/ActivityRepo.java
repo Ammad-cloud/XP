@@ -1,6 +1,7 @@
 package com.example.xpprojectgroupone.repositories;
 
 import com.example.xpprojectgroupone.models.Activity;
+import com.example.xpprojectgroupone.utilities.DatabaseConnectionManager;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,26 +14,32 @@ public class ActivityRepo {
 
     // JDBC driver
     private Connection conn;
-    /*
-    public AccessoryRepository()  { // try catch
+
+    public ActivityRepo() { // try catch
         this.conn = DatabaseConnectionManager.getDBConnection();
     }
-     */
 
     // create
     // read
     // update
     // delete
-
+/*
+    id int auto_increment,
+    name varchar(40) not null,
+    description varchar(255) not null,
+    ageLimit int not null,
+    heightLimit int not null,
+    price double not null,
+    constraint Activity_pk
+ */
     public boolean create(Activity model) {
         try {
-            PreparedStatement createActivity = conn.prepareStatement("INSERT INTO Activity" + "(Name,Description, EquipmentId, AgeLimit, HeightLimit, Price)VALUES" + "(?,?);");
+            PreparedStatement createActivity = conn.prepareStatement("INSERT INTO Activity" + "(Name,Description, AgeLimit, HeightLimit, Price)VALUES" + "(?,?,?,?,?);");
             createActivity.setString(1, model.getName());
             createActivity.setString(2, model.getDescription());
-            createActivity.setInt(3, model.getEquipmentId());
-            createActivity.setInt(4, model.getAgeLimit());
-            createActivity.setInt(5, model.getHeightLimit());
-            createActivity.setDouble(6, model.getPrice());
+            createActivity.setInt(3, model.getAgeLimit());
+            createActivity.setInt(4, model.getHeightLimit());
+            createActivity.setDouble(5, model.getPrice());
 
 
             createActivity.executeUpdate();
@@ -47,16 +54,15 @@ public class ActivityRepo {
     public Activity read(int id) {
         Activity activityToReturn = new Activity();
         try {
-            PreparedStatement getSingleAccessory = conn.prepareStatement("SELECT * FROM Activity WHERE Activity_id=" + id);
+            PreparedStatement getSingleAccessory = conn.prepareStatement("SELECT * FROM Activity WHERE id=" + id);
             ResultSet rs = getSingleAccessory.executeQuery();
             while (rs.next()) {
                 activityToReturn.setId((rs.getInt(1)));
                 activityToReturn.setName(rs.getString(2));
                 activityToReturn.setDescription(rs.getString(3));
-                activityToReturn.setEquipmentId(rs.getInt(4));
-                activityToReturn.setAgeLimit(rs.getInt(5));
-                activityToReturn.setHeightLimit(rs.getInt(6));
-                activityToReturn.setPrice(rs.getInt(7));
+                activityToReturn.setAgeLimit(rs.getInt(4));
+                activityToReturn.setHeightLimit(rs.getInt(5));
+                activityToReturn.setPrice(rs.getInt(6));
             }
         } catch (SQLException s) {
             s.printStackTrace();
@@ -75,10 +81,9 @@ public class ActivityRepo {
                 tempActivity.setId(rs.getInt(1));
                 tempActivity.setName(rs.getString(2));
                 tempActivity.setDescription(rs.getString(3));
-                tempActivity.setEquipmentId(rs.getInt(4));
-                tempActivity.setAgeLimit(rs.getInt(5));
-                tempActivity.setHeightLimit(rs.getInt(6));
-                tempActivity.setPrice(rs.getDouble(7));
+                tempActivity.setAgeLimit(rs.getInt(4));
+                tempActivity.setHeightLimit(rs.getInt(5));
+                tempActivity.setPrice(rs.getDouble(6));
                 allActivitys.add(tempActivity);
             }
         } catch (SQLException e) {
@@ -90,15 +95,14 @@ public class ActivityRepo {
 
     public boolean update(Activity activity) {
         try {
-            PreparedStatement myStmt = conn.prepareStatement("UPDATE Activity SET activityId = ?, Name = ?, Description = ?, EquipmentId = ?, AgeLimit = ?, HeighLimit = ?, Price = ?  " +
+            PreparedStatement myStmt = conn.prepareStatement("UPDATE Activity SET activityId = ?, Name = ?, Description = ?, AgeLimit = ?, HeighLimit = ?, Price = ?  " +
                     "WHERE activityId =" + activity.getId());
             myStmt.setInt(1, activity.getId());
             myStmt.setString(2, activity.getName());
             myStmt.setString(3, activity.getDescription());
-            myStmt.setInt(4,activity.getEquipmentId());
-            myStmt.setInt(5,activity.getAgeLimit());
-            myStmt.setInt(6, activity.getHeightLimit());
-            myStmt.setDouble(7, activity.getPrice());
+            myStmt.setInt(4,activity.getAgeLimit());
+            myStmt.setInt(5, activity.getHeightLimit());
+            myStmt.setDouble(6, activity.getPrice());
 
 
             System.out.println(myStmt);
