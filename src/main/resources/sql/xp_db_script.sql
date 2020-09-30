@@ -1,3 +1,7 @@
+DROP SCHEMA IF EXISTS `xp-adventure-group-one` ;
+CREATE SCHEMA IF NOT EXISTS `xp-adventure-group-one` DEFAULT CHARACTER SET utf8 ;
+USE `xp-adventure-group-one` ;
+
 create table Activity
 (
 	id int auto_increment,
