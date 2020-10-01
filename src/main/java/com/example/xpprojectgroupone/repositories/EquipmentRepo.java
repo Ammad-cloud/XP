@@ -19,10 +19,10 @@ import java.util.List;
 public class EquipmentRepo {
     // JDBC driver
 
-    EquipmentRepo equipmentRepo = new EquipmentRepo();
-    private Connection conn;
 
-    public void EquipmentRepo() { // try catch
+    private static Connection conn;
+
+    public EquipmentRepo() {
         this.conn = DatabaseConnectionManager.getDBConnection();
     }
 
@@ -39,12 +39,12 @@ public class EquipmentRepo {
     price double not null,
     constraint Activity_pk
  */
-    public boolean create(Equipment model) {
+    public static boolean create(Equipment model) {
         try {
-            PreparedStatement createEquipment = conn.prepareStatement("INSERT INTO Equipment" + "(id,type, needsRepair)VALUES" + "(?,?,?);");
-            createEquipment.setString(1, model.getId());
-            createEquipment.setString(2, model.getType());
-            createEquipment.setBoolean(3, model.isNeedsRepair());
+            PreparedStatement createEquipment = conn.prepareStatement("INSERT INTO Equipment" + "(type, needsRepair)VALUES" + "(?,?);");
+            //createEquipment.setInt(1, model.getId());
+            createEquipment.setString(1, model.getType());
+            createEquipment.setBoolean(2, model.isNeedsRepair());
             createEquipment.executeUpdate();
             return true;
 
@@ -54,13 +54,13 @@ public class EquipmentRepo {
         return false;
     }
 
-    public Equipment read(int id) {
+    public static Equipment read(int id) {
         Equipment equipmentToReturn = new Equipment();
         try {
-            PreparedStatement getSingleAccessory = conn.prepareStatement("SELECT * FROM Activity WHERE id=" + id);
+            PreparedStatement getSingleAccessory = conn.prepareStatement("SELECT * FROM Equipment WHERE id=" + id);
             ResultSet rs = getSingleAccessory.executeQuery();
             while (rs.next()) {
-                equipmentToReturn.setId((rs.getString(1)));
+                equipmentToReturn.setId((rs.getInt(1)));
                 equipmentToReturn.setType(rs.getString(2));
                 equipmentToReturn.setNeedsRepair(rs.getBoolean(3));
             }
@@ -78,7 +78,7 @@ public class EquipmentRepo {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Equipment tempEquipment = new Equipment();
-                tempEquipment.setId(rs.getString(1));
+                tempEquipment.setId(rs.getInt(1));
                 tempEquipment.setType(rs.getString(2));
                 tempEquipment.setNeedsRepair(rs.getBoolean(3));
 
@@ -93,9 +93,9 @@ public class EquipmentRepo {
 
     public boolean update(Equipment equipment) {
         try {
-            PreparedStatement myStmt = conn.prepareStatement("UPDATE Equipment SET id = ?, type = ?, needsRepair = ?" +
+            PreparedStatement myStmt = conn.prepareStatement("UPDATE Equipment SET id = ?, type = ?, needsRepair = ?" + " " +
                     "WHERE id =" + equipment.getId());
-            myStmt.setString(1, equipment.getId());
+            myStmt.setInt(1, equipment.getId());
             myStmt.setString(2, equipment.getType());
             myStmt.setBoolean(3, equipment.isNeedsRepair());
 
@@ -117,6 +117,7 @@ public class EquipmentRepo {
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, id);
             pstmt.executeUpdate();
+            System.out.println("Success");
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());

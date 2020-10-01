@@ -17,23 +17,14 @@ class EquipmentRepoTest {
     @Test
     void create() {
         Equipment equipment = new Equipment();
-        //activity.setId(1);
-        equipment.setType("Sumo");
-        equipment.setNeedsRepair(false);
+        equipment.setType("Gokart");
+        equipment.setNeedsRepair(true);
 
-        equipmentRepo().create(equipment);
+        EquipmentRepo.create(equipment);
         assertEquals(equipment.toString(),equipmentRepo.read(1).toString());
-    }Activity activity = new Activity();
-    //activity.setId(1);
-        activity.setName("Sumo");
-        activity.setHeightLimit(170);
-        activity.setAgeLimit(18);
-        activity.setDescription("hygge");
-        activity.setPrice(2500);
-        activityRepo.create(activity);
-    assertEquals(activity.toString(),activityRepo.read(1).toString());
+
 }
-    }
+
 
     @Test
     void read() {
@@ -41,13 +32,19 @@ class EquipmentRepoTest {
 
     @Test
     void readAll() {
+        
     }
 
     @Test
     void update() {
+        Equipment equipment = new Equipment();
+        equipment = equipmentRepo.read(1);
+        equipment.setNeedsRepair(false);
+        equipmentRepo.update(equipment);
     }
 
     @Test
     void delete() {
+        equipmentRepo.delete(3);
     }
 }
