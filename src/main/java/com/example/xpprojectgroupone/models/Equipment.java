@@ -14,6 +14,10 @@ public class Equipment {
         this.needsRepair = needsRepair;
     }
 
+    public Equipment() {
+
+    }
+
     // Getters
     public String getId() {
         return id;
