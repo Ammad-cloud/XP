@@ -2,13 +2,13 @@ package com.example.xpprojectgroupone.models;
 
 public class Activity {
 
-    int id;
-    String name;
-    String description;
-    int equipmentId;
-    int ageLimit;
-    int heightLimit;
-    double price;
+    private int id;
+    private String name;
+    private String description;
+    private int equipmentId;
+    private int ageLimit;
+    private int heightLimit;
+    private double price;
 
     public Activity() {
     }

@@ -31,7 +31,7 @@ class ActivityRepoTest {
 
     @Test
     void readAll() {
-        List<Activity> activitysArray = new ArrayList<>();
+        List<Activity> activitysArray;
         activitysArray = activityRepo.readAll();
 
         List<Activity> testArray = new ArrayList<>();

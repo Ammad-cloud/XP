@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <form class="forms" action="#" th:action="@{/updatedActivity}" th:object="${activity}"
+          method="post">
+
+        <br>
+        <br>
+        <input type="hidden" th:field="*{id}" id="activityId">
+
+        <label for="activityName">Aktivitets Navn</label>
+        <input type="text" th:field="*{name}" name="activityName" id="activityName"/>
+        <br><br>
+
+        <label for="activityDesc">Aktivitets Beskrivelse</label>
+        <input type="text" th:field="*{description}" name="activityDesc" id="activityDesc"/><br><br>
+
+        <label for="activityAgeLimit">Aldersbegrænsning</label>
+        <input type="text" th:field="*{ageLimit}" name="activityAgeLimit" id="activityAgeLimit"/><br><br>
+
+        <label for="heightLimit">Minimums Højde</label>
+        <input type="text" th:field="*{heightLimit}" name="heightLimit" id="heightLimit"/><br><br>
+
+        <label for="activityPrice">Pris</label>
+        <input type="text" th:field="*{price}" name="activityPrice" id="activityPrice"/><br><br>
+
+        <input type="submit" class="btn-ed" value="Update">
+    </form>
+</div>
+
+
+
+</body>
+</html>

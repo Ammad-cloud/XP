@@ -123,8 +123,9 @@ public class ActivityRepo {
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            System.out.println("Fail");
         }
-        System.out.println("Fail");
+
 
         return false;
 
