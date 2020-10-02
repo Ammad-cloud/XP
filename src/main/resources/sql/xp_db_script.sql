@@ -1,7 +1,8 @@
-DROP SCHEMA IF EXISTS `xp-adventure-group-one` ;
-CREATE SCHEMA IF NOT EXISTS `xp-adventure-group-one` DEFAULT CHARACTER SET utf8 ;
+DROP DATABASE IF EXISTS `xp-adventure-group-one` ;
+CREATE DATABASE `xp-adventure-group-one` DEFAULT CHARACTER SET utf8 ;
 USE `xp-adventure-group-one` ;
 
+DROP TABLE IF EXISTS Activity;
 create table Activity
 (
 	id int auto_increment,
@@ -14,15 +15,18 @@ create table Activity
 		primary key (id)
 );
 
+DROP TABLE IF EXISTS Equipment;
 create table Equipment
 (
 	id int auto_increment,
 	type varchar(40) not null,
 	needsRepair boolean default false not null,
+    price int,
 	constraint Equipment_pk
 		primary key (id)
-);
 
+);
+DROP TABLE IF EXISTS ActivityEquipment;
 create table ActivityEquipment
 (
 	id int auto_increment,
@@ -36,6 +40,7 @@ create table ActivityEquipment
 		foreign key (equipmentId) references Equipment(id)
 );
 
+DROP TABLE IF EXISTS Customer;
 create table Customer
 (
 	id int auto_increment,
@@ -47,6 +52,7 @@ create table Customer
 		primary key (id)
 );
 
+DROP TABLE IF EXISTS Instructor;
 create table Instructor
 (
 	id int auto_increment,
@@ -56,6 +62,7 @@ create table Instructor
 		primary key (id)
 );
 
+DROP TABLE IF EXISTS Booking;
 create table Booking
 (
 	id int auto_increment,
