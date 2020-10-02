@@ -13,7 +13,7 @@ create table Activity
 create table Equipment
 (
 	id int auto_increment,
-	type varchar(40) not null,
+	equipmentType varchar(40) not null,
 	needsRepair boolean default false not null,
 	constraint Equipment_pk
 		primary key (id)

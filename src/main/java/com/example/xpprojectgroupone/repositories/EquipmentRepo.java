@@ -41,7 +41,7 @@ public class EquipmentRepo {
  */
     public static boolean create(Equipment model) {
         try {
-            PreparedStatement createEquipment = conn.prepareStatement("INSERT INTO Equipment" + "(type, needsRepair)VALUES" + "(?,?);");
+            PreparedStatement createEquipment = conn.prepareStatement("INSERT INTO Equipment" + "(equipmenttypes, needsRepair)VALUES" + "(?,?);");
             //createEquipment.setInt(1, model.getId());
             createEquipment.setString(1, model.getType());
             createEquipment.setBoolean(2, model.isNeedsRepair());
@@ -71,6 +71,63 @@ public class EquipmentRepo {
     }
 
 
+    public List<Equipment> readGokart() {
+        List<Equipment> allEquipment = new ArrayList<Equipment>();
+        try {
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM Equipment WHERE equipmenttypes = \"Gokart\";");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Equipment tempEquipment = new Equipment();
+                tempEquipment.setId(rs.getInt(1));
+                tempEquipment.setType(rs.getString(2));
+                tempEquipment.setNeedsRepair(rs.getBoolean(3));
+
+                allEquipment.add(tempEquipment);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return allEquipment;
+    }
+
+    public List<Equipment> readSumo() {
+        List<Equipment> allEquipment = new ArrayList<Equipment>();
+        try {
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM Equipment WHERE equipmenttypes = \"Sumo\";");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Equipment tempEquipment = new Equipment();
+                tempEquipment.setId(rs.getInt(1));
+                tempEquipment.setType(rs.getString(2));
+                tempEquipment.setNeedsRepair(rs.getBoolean(3));
+
+                allEquipment.add(tempEquipment);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return allEquipment;
+    }
+
+    public List<Equipment> readPaintball() {
+        List<Equipment> allEquipment = new ArrayList<Equipment>();
+        try {
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM Equipment WHERE equipmenttypes = \"Paintball\";");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Equipment tempEquipment = new Equipment();
+                tempEquipment.setId(rs.getInt(1));
+                tempEquipment.setType(rs.getString(2));
+                tempEquipment.setNeedsRepair(rs.getBoolean(3));
+
+                allEquipment.add(tempEquipment);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return allEquipment;
+    }
+
     public List<Equipment> readAll() {
         List<Equipment> allEquipment = new ArrayList<Equipment>();
         try {
@@ -93,7 +150,7 @@ public class EquipmentRepo {
 
     public boolean update(Equipment equipment) {
         try {
-            PreparedStatement myStmt = conn.prepareStatement("UPDATE Equipment SET id = ?, type = ?, needsRepair = ?" + " " +
+            PreparedStatement myStmt = conn.prepareStatement("UPDATE Equipment SET id = ?, equipmenttypes = ?, needsRepair = ?" + " " +
                     "WHERE id =" + equipment.getId());
             myStmt.setInt(1, equipment.getId());
             myStmt.setString(2, equipment.getType());
