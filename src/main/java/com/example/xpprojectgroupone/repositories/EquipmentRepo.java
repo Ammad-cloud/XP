@@ -27,7 +27,7 @@ public class EquipmentRepo {
     public void add(Equipment equipment) {
         try {
             PreparedStatement myStmt = conn.prepareStatement("INSERT INTO equipment VALUES (?, ?, ?, ?)");
-            myStmt.setString(1, equipment.getId());
+            myStmt.setInt(1, equipment.getId());
             myStmt.setString(2, equipment.getType());
             myStmt.setBoolean(3, equipment.isNeedsRepair());
             myStmt.setDouble(4, equipment.getPrice());

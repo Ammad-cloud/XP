@@ -3,12 +3,12 @@ package com.example.xpprojectgroupone.models;
 public class Equipment {
 
     // Fields
-    private String id;
+    private int id;
     private String type;
     private boolean needsRepair;
     private double price;
 
-    public Equipment(String id, String type, boolean needsRepair, double price) {
+    public Equipment(int id, String type, boolean needsRepair, double price) {
         this.id = id;
         this.type = type;
         this.needsRepair = needsRepair;
@@ -19,11 +19,11 @@ public class Equipment {
 
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
