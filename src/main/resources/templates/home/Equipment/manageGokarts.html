@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+</head>
+
+<body>
+<div>
+    <table>
+
+        <br>
+        <br>
+        <tr th:each="equipment : ${viewEquipment}">
+            <td th:text="${equipment.id}"></td>
+            <td th:text="${equipment.type}"></td>
+            <td th:text="${equipment.needsRepair}"></td>
+
+            <td>
+                <a th:href="@{/updateEquipment(id=${equipment.id})}"><button class="btn-ed">Update</button></a>
+                <a th:href="@{/deleteEquipment(id=${equipment.id})}"><button class="btn-del">Delete</button></a>
+            </td>
+
+
+        </tr>
+        <a th:href="@{/createEquipment}"><button class="btn-ed">Create</button></a>
+    </table>
+
+</div>
+
+
+</body>
+</html>
