@@ -21,23 +21,24 @@ public class ActivityController {
         activityRepo = new ActivityRepo();
     }
 
+    @GetMapping("/indexActivity") //ændre til det rigtige getmapping navn når view er lavet
+    public String activityList(Model model){
+        model.addAttribute("activity", activityRepo.readAll());
+        return "home/activity/activityIndex";
+    }
+
     @GetMapping("/createActivity")
     public String createActivity(Model model){
         model.addAttribute("createActivity", new Activity());
         return "home/Activity/createActivity";
     }
 
+
+
     @PostMapping("/createActivity")
     public String createActivityToDB(@ModelAttribute Activity activity){
         activityRepo.create(activity);
-        return "home/index";
-    }
-
-
-    @GetMapping("gokart/list") //ændre til det rigtige getmapping navn når view er lavet
-    public String activityList(Model model){
-        model.addAttribute("activity", activityRepo.readAll());
-        return "home/activity/activityIndex";
+        return "redirect:/indexActivity";
     }
 
     @GetMapping("updateActivity")
@@ -49,14 +50,20 @@ public class ActivityController {
     @PostMapping("updatedActivity")
     public String updatedActivity(@ModelAttribute("activity") Activity activity) {
         activityRepo.update(activity);
-        return "redirect:/gokart/list"; // ÆNDRES
+        return "redirect:/indexActivity"; // ÆNDRES
     }
 
 
     @GetMapping("deleteActivity")
     public String deleteActivity(@RequestParam int id){
         activityRepo.delete(id);
-        return "redirect:/gokart/list"; // SKAL OGSÅ ÆNDRES NÅR VIEW ER KLAR
+        return "redirect:/indexActivity/"; // SKAL OGSÅ ÆNDRES NÅR VIEW ER KLAR
+    }
+
+
+    @GetMapping("home")
+    public String returnHome(){
+        return "home/index";
     }
 
 
