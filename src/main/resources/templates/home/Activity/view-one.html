@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="UTF-8">
+        <title>Oplysninger om aktivitet</title>
+        <link rel="stylesheet" href="/../stylesheet.css" type="text/css"/>
+    </head>
+    <body>
+        <div></div>
+        <h1>Aktivitetsinformation</h1>
+        <table id="myTable" class="table table-one border" style="width: 33.33%">
+            <tr>
+                <th>ID:</th>
+                <td th:text="${activity.id}}"/>
+            </tr>
+            <tr>
+                <th>Aktivitetsnavn:</th>
+                <td th:text="${activity.name}}"/>
+            </tr>
+            <tr>
+                <th>Beskrivelse:</th>
+                <td th:text="${activity.description}}"/>
+            </tr>
+            <tr>
+                <th>Udstyr:</th>
+                <td th:text="${activity.equipmentId}}"/>
+            </tr>
+            <tr>
+                <th>Aldersgrænse:</th>
+                <td th:text="${activity.ageLimit}}"/>
+            </tr>
+            <tr>
+                <th>Minimum højde:</th>
+                <td th:text="${activity.heightLimit}}"/>
+            </tr>
+            <tr>
+                <th>Pris pr. person:</th>
+                <td th:text="${activity.price}}"/>
+            </tr>
+        </table>
+</body>
+</html>
