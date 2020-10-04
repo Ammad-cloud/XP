@@ -21,6 +21,19 @@ public class ActivityController {
         activityRepo = new ActivityRepo();
     }
 
+    @GetMapping("/createActivity")
+    public String createActivity(Model model){
+        model.addAttribute("createActivity", new Activity());
+        return "home/Activity/createActivity";
+    }
+
+    @PostMapping("/createActivity")
+    public String createActivityToDB(@ModelAttribute Activity activity){
+        activityRepo.create(activity);
+        return "home/index";
+    }
+
+
     @GetMapping("gokart/list") //ændre til det rigtige getmapping navn når view er lavet
     public String activityList(Model model){
         model.addAttribute("activity", activityRepo.readAll());
