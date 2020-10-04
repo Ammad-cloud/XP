@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Redigér Aktivitet</title>
+    <link rel="stylesheet" href="/../stylesheet.css" type="text/css">
+</head>
+<body>
+    <h1>Redigér aktivitet</h1>
+    <form action="activity/update" method="post">
+        <table>
+            <tr>
+                <td>Equitment:</td>
+                <td>
+                    <input type="text" name="equitmentId" th:value="${activity.equipmentId}}">
+                </td>
+            </tr>
+            <tr>
+                <td>Pris:</td>
+                <td>
+                    <input type="number" name="price" th:value="${activity.price}}"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input id="id" name="id" th:value="{activity.activityId}" type="hidden"/>
+                </td>
+            </tr>
+        </table>
+        <input type="submit" value="Gem ændringer">
+    </form>
+</body>
+</html>
