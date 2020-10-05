@@ -1,7 +1,7 @@
 package com.example.xpprojectgroupone.repositories;
 
-import com.example.xpprojectgroupone.DBManager.DBManager;
 import com.example.xpprojectgroupone.models.Reservation;
+import com.example.xpprojectgroupone.utilities.DatabaseConnectionManager;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
@@ -10,19 +10,22 @@ import java.util.ArrayList;
 @Repository
 public class ReservationRepo {
 
-    DBManager dbManager = new DBManager();
-
     public ArrayList<Reservation> getAllReservations(){
         ArrayList<Reservation> resArray = new ArrayList<>();
         try{
-            Connection connection = DBManager.getConnection();
-            String sql = "SELECT * FROM reservation"; //todo BOOKING???
+            Connection connection = DatabaseConnectionManager.getDBConnection();
+            String sql = "SELECT * FROM booking";
             PreparedStatement prepStatement = connection.prepareStatement(sql);
             ResultSet rs = prepStatement.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");
-                String idfk = rs.getString("idfk");
-                Reservation reservation = new Reservation(id, idfk);
+                Timestamp date = rs.getTimestamp("dateTime");
+                int customerId = rs.getInt("customerId");
+                int actitivityId = rs.getInt("activityId");
+                int equipmentId = rs.getInt("equipmentId");
+                int instructorId = rs.getInt("isntructorId");
+                int participants = rs.getInt("participants");
+                Reservation reservation = new Reservation(id, date, customerId, actitivityId, equipmentId, instructorId, participants);
                 resArray.add(reservation);
             }
             return resArray;
@@ -33,11 +36,16 @@ public class ReservationRepo {
 
     public void createReservation(Reservation reservation) {
         try {
-            Connection connection = DBManager.getConnection();
-            String sql = "INSERT INTO reservation VALUES(default, ?, ?)";
+            Connection connection = DatabaseConnectionManager.getDBConnection();
+            String sql = "INSERT INTO booking VALUES(default, ?, ?, ?, ?, ?, ?)";
             PreparedStatement prepStatement = connection.prepareStatement(sql);
             prepStatement.setInt(1, reservation.getId());
-            prepStatement.setString(2, reservation.getIdfk());
+            prepStatement.setTimestamp(2, reservation.getDate());
+            prepStatement.setInt(3, reservation.getCustomerId());
+            prepStatement.setInt(3, reservation.getActivityId());
+            prepStatement.setInt(3, reservation.getEquipmentId());
+            prepStatement.setInt(3, reservation.getInstructorId());
+            prepStatement.setInt(3, reservation.getParticipants());
             prepStatement.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e);
@@ -46,12 +54,16 @@ public class ReservationRepo {
 
     public void editReservation(Reservation reservation) {
         try {
-            Connection connection = DBManager.getConnection();
-            String sql = "UPDATE reservation SET column1 = 1, column2 = 2 WHERE id=?";
+            Connection connection = DatabaseConnectionManager.getDBConnection();
+            String sql = "UPDATE booking SET customerId = ?, activityId = ?, equipemntId = ?, instructorId = ?, participants = ? WHERE id=?";
 
             PreparedStatement prepStatement = connection.prepareStatement(sql);
-            prepStatement.setString(1, reservation.getIdfk());
-            prepStatement.setInt(2, reservation.getId());
+            prepStatement.setInt(1, reservation.getCustomerId());
+            prepStatement.setInt(2, reservation.getActivityId());
+            prepStatement.setInt(3, reservation.getEquipmentId());
+            prepStatement.setInt(4, reservation.getInstructorId());
+            prepStatement.setInt(5, reservation.getParticipants());
+            prepStatement.setInt(6, reservation.getId());
             prepStatement.executeUpdate();
         }catch(SQLException e){
             if(e instanceof SQLIntegrityConstraintViolationException){
@@ -62,8 +74,8 @@ public class ReservationRepo {
 
     public void deleteReservation(Reservation reservation) {
         try {
-            Connection connection = DBManager.getConnection();
-            String sql = "DELETE FROM reservation WHERE id = ?";
+            Connection connection = DatabaseConnectionManager.getDBConnection();
+            String sql = "DELETE FROM booking WHERE id = ?";
             PreparedStatement prepStatement = connection.prepareStatement(sql);
             prepStatement.setInt(1, reservation.getId());
             prepStatement.executeUpdate();

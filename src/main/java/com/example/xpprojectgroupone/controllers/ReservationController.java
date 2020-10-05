@@ -14,6 +14,9 @@ import java.util.ArrayList;
 public class ReservationController {
     ReservationService rs = new ReservationService();
 
+
+    //Til jer der laver front-end, går jeg ud fra I ændrer nogle ting her
+    //Men en skabelon om ikke andet, om hvordan det hænger sammen
     @GetMapping("/display-reservations")
     public String showReservations(Model model){
         ArrayList<Reservation> resArray = rs.getReservations();
