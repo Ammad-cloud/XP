@@ -12,21 +12,18 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class EquipmentRepoTest {
-
-    EquipmentRepo equipmentRepo = new EquipmentRepo();
-
     Equipment equipment;
     @Autowired()
-    EquipmentService equipmentService;
+    EquipmentRepo equipmentRepo;
 
     @BeforeEach
     void setUp() {
-        equipment = new Equipment(0, "gokart", false, 0.0);
+        equipment = new Equipment(0, "gokart", false);
     }
 
     @Test
     void add() {
-        equipmentService.add(equipment);
+        equipmentRepo.add(equipment);
     }
 
     @Test
@@ -40,8 +37,8 @@ class EquipmentRepoTest {
         equipment.setType("Gokart");
         equipment.setNeedsRepair(true);
 
-        EquipmentRepo.create(equipment);
-        assertEquals(equipment.toString(),equipmentRepo.read(1).toString());
+        equipmentRepo.add(equipment);
+        assertEquals(equipment.toString(),equipmentRepo.read(0).toString());
 
 }
 

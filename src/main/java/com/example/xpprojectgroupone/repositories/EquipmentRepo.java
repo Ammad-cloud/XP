@@ -1,6 +1,5 @@
 package com.example.xpprojectgroupone.repositories;
 
-
 import com.example.xpprojectgroupone.models.Equipment;
 import com.example.xpprojectgroupone.utilities.DatabaseConnectionManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,38 +13,22 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
-
 @Repository
 public class EquipmentRepo {
-    // JDBC driver
+    private Connection conn;
     @Autowired
     JdbcTemplate template;
 
-    private static Connection conn;
-
-    public EquipmentRepo() {
+    public EquipmentRepo(){
         this.conn = DatabaseConnectionManager.getDBConnection();
     }
 
-    // create
-    // read
-    // update
-    // delete
-/*
-    id int auto_increment,
-    name varchar(40) not null,
-    description varchar(255) not null,
-    ageLimit int not null,
-    heightLimit int not null,
-    price double not null,
-    constraint Activity_pk
- */
 
-    public void add(Equipment equipment) {
+    private static List<Equipment> equipmentList = new ArrayList<>();
+
+    /*public void add(Equipment equipment) {
         String sql = "INSERT INTO Equipment VALUES (0, ?, ?, ?)";
-        template.update(sql, equipment.getType(), equipment.isNeedsRepair(), equipment.getPrice());
+        template.update(sql, equipment.getType(), equipment.isNeedsRepair());
         /*try {
             System.out.println("Equipment repo add running");
             PreparedStatement myStmt = conn.prepareStatement("");
@@ -56,15 +39,15 @@ public class EquipmentRepo {
             System.out.println("Connection: " + myStmt.getConnection());
         } catch (SQLException e){
             System.out.println("Equipment error " + e);
-        }*/
+        }
 
-    }
-    public static boolean create(Equipment model) {
+    }*/
+    public boolean add(Equipment equipment) {
         try {
-            PreparedStatement createEquipment = conn.prepareStatement("INSERT INTO Equipment" + "(equipmenttypes, needsRepair)VALUES" + "(?,?);");
-            //createEquipment.setInt(1, model.getId());
-            createEquipment.setString(1, model.getType());
-            createEquipment.setBoolean(2, model.isNeedsRepair());
+            PreparedStatement createEquipment = conn.prepareStatement("INSERT INTO Equipment VALUES (?, ?, ?);");
+            createEquipment.setInt(1, 0);
+            createEquipment.setString(1, equipment.getType());
+            createEquipment.setBoolean(2, equipment.isNeedsRepair());
             createEquipment.executeUpdate();
             return true;
 
@@ -74,7 +57,7 @@ public class EquipmentRepo {
         return false;
     }
 
-    public static Equipment read(int id) {
+    public Equipment read(int id) {
         Equipment equipmentToReturn = new Equipment();
         try {
             PreparedStatement getSingleAccessory = conn.prepareStatement("SELECT * FROM Equipment WHERE id=" + id);
@@ -159,7 +142,6 @@ public class EquipmentRepo {
                 tempEquipment.setType(rs.getString(2));
                 tempEquipment.setNeedsRepair(rs.getBoolean(3));
 
-                allEquipment.add(tempEquipment);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -167,41 +149,33 @@ public class EquipmentRepo {
         return allEquipment;
     }
 
-
     public boolean update(Equipment equipment) {
         try {
-            PreparedStatement myStmt = conn.prepareStatement("UPDATE Equipment SET id = ?, equipmenttypes = ?, needsRepair = ?" + " " +
-                    "WHERE id =" + equipment.getId());
-            myStmt.setInt(1, equipment.getId());
-            myStmt.setString(2, equipment.getType());
-            myStmt.setBoolean(3, equipment.isNeedsRepair());
+            PreparedStatement ps = conn.prepareStatement("UPDATE Equipment SET id = ?, equipmentType = ?, needsRepair = ?" + " " +
+                    "WHERE id = " + equipment.getId());
+            ps.setInt(1, equipment.getId());
+            ps.setString(2, equipment.getType());
+            ps.setBoolean(3, equipment.isNeedsRepair());
 
-
-
-            System.out.println(myStmt);
-            myStmt.executeUpdate();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
+            ps.executeUpdate();
+            return true;
+        } catch(SQLException e) {
+            System.out.println("Error: " + e);
         }
         return false;
     }
-
 
     public boolean delete(int id) {
         String sql = "DELETE FROM Equipment WHERE id = ?";
         try {
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1, id);
-            pstmt.executeUpdate();
-            System.out.println("Success");
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+            return true;
+        } catch(SQLException e) {
+            System.out.println(e);
         }
-        System.out.println("Fail");
-
         return false;
     }
-}
 
+}

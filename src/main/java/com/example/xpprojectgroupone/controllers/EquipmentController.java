@@ -2,6 +2,7 @@ package com.example.xpprojectgroupone.controllers;
 
 
 import com.example.xpprojectgroupone.models.Equipment;
+import com.example.xpprojectgroupone.repositories.EquipmentRepo;
 import com.example.xpprojectgroupone.services.EquipmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,7 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping(value = {"/equipment"})
 public class EquipmentController {
     @Autowired
-    EquipmentService equipmentService;
+    EquipmentRepo equipmentRepo;
 
     @GetMapping("/create")
     public String createEquipment(Model model){
@@ -26,7 +27,7 @@ public class EquipmentController {
 
     @PostMapping("create")
     public String addEquipment(@ModelAttribute Equipment equipment, RedirectAttributes redirectAttributes){
-        equipmentService.add(equipment);
+        equipmentRepo.add(equipment);
         return "redirect:/equipment/create";
     }
 
