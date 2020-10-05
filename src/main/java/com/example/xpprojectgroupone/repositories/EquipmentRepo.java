@@ -3,7 +3,6 @@ package com.example.xpprojectgroupone.repositories;
 import com.example.xpprojectgroupone.models.Equipment;
 import com.example.xpprojectgroupone.utilities.DatabaseConnectionManager;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;

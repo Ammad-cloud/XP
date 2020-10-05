@@ -34,10 +34,10 @@ public class ActivityController {
     @GetMapping("/create")
     public String createActivity(Model model){
         model.addAttribute("activity", new Activity());
-        Equipment equipment1 = new Equipment("1", "Handsker", false);
-        Equipment equipment2 = new Equipment("2", "Hjelm", false);
-        Equipment equipment3 = new Equipment("3", "Dragt", false);
-        Equipment equipment4 = new Equipment("4", "Paintball-pistol", false);
+        Equipment equipment1 = new Equipment(1, "Handsker", false);
+        Equipment equipment2 = new Equipment(2, "Hjelm", false);
+        Equipment equipment3 = new Equipment(3, "Dragt", false);
+        Equipment equipment4 = new Equipment(4, "Paintball-pistol", false);
         List<Equipment> equipmentList = new ArrayList<>();
         equipmentList.add(equipment1);
         equipmentList.add(equipment2);
