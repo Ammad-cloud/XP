@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/equipment/update" method="post">
+    <h2 th:text="${equipment.type} + ' - ' + ${equipment.id}"></h2>
+    <table>
+        <tr>
+            <td><label>Udstyrstype</label></td>
+            <td>
+                <select name="type">
+                    <option th:selected="${equipment.type == type.type}"
+                            th:each = "type: ${equipmentTypes}"
+                            th:text="${type.type}"
+                            th:value="${type.type}">
+                    </option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td><label>Reparationsstatus: </label></td>
+            <td>
+                <label>Under reparation</label>
+                <input th:attr="checked=${equipment.needsRepair}?'true'" type="radio" value="true" name="needsRepair">
+            </td>
+            <td>
+                <label>Ikke under reparation</label>
+                <input th:attr="checked=${!equipment.needsRepair}?'true'" type="radio" value="false" name="needsRepair">
+            </td>
+        </tr>
+        <input type="hidden" th:field="${equipment.id}">
+        <tr>
+            <td>
+                <input type="submit" value="Gem ændringer">
+            </td>
+        </tr>
+
+    </table>
+</form>
+</body>
+</html>

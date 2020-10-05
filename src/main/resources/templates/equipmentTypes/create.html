@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Opret udstyrstype</title>
+    <link rel = stylesheet href="/../stylesheet.css" type="text/css">
+</head>
+<body>
+<form action="/equipment_type/create" method="post">
+    <table>
+        <tr>
+            <label>Udstyrstype (f.eks. bat)</label>
+            <td><input type="text" th:field="*{equipmentType.type}"></td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Tilføj udstyrstype"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

@@ -3,20 +3,27 @@ package com.example.xpprojectgroupone.models;
 public class Equipment {
 
     // Fields
-    private String id;
+    private int id;
     private String type;
     private boolean needsRepair;
 
     // Constructor
-    public Equipment(String id, String type, boolean needsRepair) {
+    public Equipment(int id, String type, boolean needsRepair) {
         this.id = id;
         this.type = type;
         this.needsRepair = needsRepair;
     }
 
-    // Getters
-    public String getId() {
+    public Equipment(){
+
+    }
+
+    public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getType() {
@@ -28,9 +35,6 @@ public class Equipment {
     }
 
     // Setters
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public void setType(String type) {
         this.type = type;
@@ -38,5 +42,9 @@ public class Equipment {
 
     public void setNeedsRepair(boolean needsRepair) {
         this.needsRepair = needsRepair;
+    }
+
+    public String toString() {
+        return " Type " + type + " Needs repair " + needsRepair;
     }
 }
