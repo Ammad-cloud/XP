@@ -77,7 +77,7 @@ public class EquipmentRepo {
     public List<Equipment> readGokart() {
         List<Equipment> allEquipment = new ArrayList<Equipment>();
         try {
-            PreparedStatement ps = conn.prepareStatement("SELECT * FROM Equipment WHERE equipmenttypes = \"Gokart\" ORDER BY needsRepair DESC;");
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM Equipment WHERE equipmentType = \"Gokart\" ORDER BY needsRepair DESC;");
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Equipment tempEquipment = new Equipment();
@@ -96,7 +96,7 @@ public class EquipmentRepo {
     public List<Equipment> readSumo() {
         List<Equipment> allEquipment = new ArrayList<Equipment>();
         try {
-            PreparedStatement ps = conn.prepareStatement("SELECT * FROM Equipment WHERE equipmenttypes = \"Sumo\" ORDER BY needsRepair DESC;");
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM Equipment WHERE equipmentType = \"Sumo\" ORDER BY needsRepair DESC;");
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Equipment tempEquipment = new Equipment();
@@ -115,7 +115,7 @@ public class EquipmentRepo {
     public List<Equipment> readPaintball() {
         List<Equipment> allEquipment = new ArrayList<Equipment>();
         try {
-            PreparedStatement ps = conn.prepareStatement("SELECT * FROM Equipment WHERE equipmenttypes = \"Paintball\" ORDER BY needsRepair DESC;");
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM Equipment WHERE equipmentType = \"Paintball\" ORDER BY needsRepair DESC;");
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Equipment tempEquipment = new Equipment();
