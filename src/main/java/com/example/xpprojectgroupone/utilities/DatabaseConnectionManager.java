@@ -25,25 +25,24 @@ public class DatabaseConnectionManager {
             USER = prop.getProperty("username");
             PASSWORD = prop.getProperty("password");
             URL = prop.getProperty("url");
-
-
         }catch (IOException e) {
             e.printStackTrace();
         }
 
+        try {
+            return DriverManager.getConnection(URL,USER,PASSWORD);
+        } catch (SQLException throwables) {
+            System.out.println(URL + USER + PASSWORD);
+        }
     /*
         Connection Manager
          */
 
         try {
             return DriverManager.getConnection(URL,USER,PASSWORD);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return null;
     }
-
-
 }
-
-

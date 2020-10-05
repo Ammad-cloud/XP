@@ -77,4 +77,48 @@ create table Booking
 		foreign key (instructorId) references Instructor(id)
 );
 
+INSERT INTO activity(id, name, description, ageLimit, heightLimit, price, equipment_price) VALUES (default, "Go Cart", "description yo", 16, 160, 400, 0);
+INSERT INTO activity(id, name, description, ageLimit, heightLimit, price, equipment_price) VALUES (default, "Sumo Wrestling", "description yo", 0, 0, 85, 0);
+INSERT INTO activity(id, name, description, ageLimit, heightLimit, price, equipment_price) VALUES (default, "Paint Ball", "description yo", 16, 0, 250, 1);
+INSERT INTO activity(id, name, description, ageLimit, heightLimit, price, equipment_price) VALUES (default, "Minigolf", "description yo", 0, 0, 100, 0);
+
+insert into equipment (id, type, needsRepair) VALUES (default, "Hjelm", false);
+insert into equipment (id, type, needsRepair) VALUES (default, "Dragt", false);
+insert into equipment (id, type, needsRepair) VALUES (default, "Dragt", false);
+insert into equipment (id, type, needsRepair) VALUES (default, "Dragt", false);
+insert into equipment (id, type, needsRepair) VALUES (default, "Maske", false);
+insert into equipment (id, type, needsRepair) VALUES (default, "Handsker", false);
+insert into equipment (id, type, needsRepair) VALUES (default, "Sko", false);
+insert into equipment (id, type, needsRepair) VALUES (default, "Gevær", false);
+insert into equipment (id, type, needsRepair) VALUES (default, "Putter", false);
+insert into equipment (id, type, needsRepair) VALUES (default, "Bolde", false);
+
+alter table instructor
+	add activityId int null;
+
+alter table instructor
+	add constraint instructor_activity_fk
+		foreign key (activityId) references activity (id);
+
+
+insert into instructor (id, firstName, lastName, activityId) values (default, "Hans", "Jensen", 1);
+insert into instructor (id, firstName, lastName, activityId) values (default, "Malene", "Svendsen", 1);
+insert into instructor (id, firstName, lastName, activityId) values (default, "Helena", "Nielsen", 2);
+insert into instructor (id, firstName, lastName, activityId) values (default, "Pete", "Bropen", 2);
+insert into instructor (id, firstName, lastName, activityId) values (default, "Søren", "Sørensen", 3);
+insert into instructor (id, firstName, lastName, activityId) values (default, "Kenneth", "Mortensen", 3);
+insert into instructor (id, firstName, lastName, activityId) values (default, "Ulla", "Larsen", 4);
+insert into instructor (id, firstName, lastName, activityId) values (default, "Rasmus", "Hansen", 4);
+
+
+insert into activityequipment (id, activityId, equipmentId) VALUES (default, 1, 1);
+insert into activityequipment (id, activityId, equipmentId) VALUES (default, 1, 2);
+insert into activityequipment (id, activityId, equipmentId) VALUES (default, 2, 3);
+insert into activityequipment (id, activityId, equipmentId) VALUES (default, 3, 4);
+insert into activityequipment (id, activityId, equipmentId) VALUES (default, 3, 5);
+insert into activityequipment (id, activityId, equipmentId) VALUES (default, 3, 6);
+insert into activityequipment (id, activityId, equipmentId) VALUES (default, 3, 7);
+insert into activityequipment (id, activityId, equipmentId) VALUES (default, 3, 8);
+insert into activityequipment (id, activityId, equipmentId) VALUES (default, 4, 9);
+insert into activityequipment (id, activityId, equipmentId) VALUES (default, 4, 10);
 
