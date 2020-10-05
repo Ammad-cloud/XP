@@ -16,15 +16,10 @@ import java.util.List;
 @Repository
 public class EquipmentRepo {
     private Connection conn;
-    @Autowired
-    JdbcTemplate template;
 
     public EquipmentRepo(){
         this.conn = DatabaseConnectionManager.getDBConnection();
     }
-
-
-    private static List<Equipment> equipmentList = new ArrayList<>();
 
     /*public void add(Equipment equipment) {
         String sql = "INSERT INTO Equipment VALUES (0, ?, ?, ?)";
@@ -57,6 +52,21 @@ public class EquipmentRepo {
         return false;
     }
 
+    public boolean update(Equipment equipment){
+        String sql = "UPDATE Equipment SET equipmentType = ?, needsRepair = ? WHERE id = ?";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, equipment.getType());
+            ps.setBoolean(2, equipment.isNeedsRepair());
+            ps.setInt(3, equipment.getId());
+            ps.executeUpdate();
+            return true;
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     public Equipment read(int id) {
         Equipment equipmentToReturn = new Equipment();
         try {
@@ -73,6 +83,22 @@ public class EquipmentRepo {
         return equipmentToReturn;
     }
 
+    public List<Equipment> readAllByType(String type){
+        String sql = "SELECT * FROM Equipment WHERE Equipment.equipmentType = ?";
+        List<Equipment> equipmentList = new ArrayList<>();
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, type);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                Equipment eq = new Equipment(rs.getInt(1), rs.getString(2), rs.getBoolean(3));
+                equipmentList.add(eq);
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return equipmentList;
+    }
 
     public List<Equipment> readGokart() {
         List<Equipment> allEquipment = new ArrayList<Equipment>();
@@ -141,7 +167,7 @@ public class EquipmentRepo {
                 tempEquipment.setId(rs.getInt(1));
                 tempEquipment.setType(rs.getString(2));
                 tempEquipment.setNeedsRepair(rs.getBoolean(3));
-
+                allEquipment.add(tempEquipment);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -149,7 +175,7 @@ public class EquipmentRepo {
         return allEquipment;
     }
 
-    public boolean update(Equipment equipment) {
+    /*public boolean update(Equipment equipment) {
         try {
             PreparedStatement ps = conn.prepareStatement("UPDATE Equipment SET id = ?, equipmentType = ?, needsRepair = ?" + " " +
                     "WHERE id = " + equipment.getId());
@@ -163,7 +189,7 @@ public class EquipmentRepo {
             System.out.println("Error: " + e);
         }
         return false;
-    }
+    }*/
 
     public boolean delete(int id) {
         String sql = "DELETE FROM Equipment WHERE id = ?";

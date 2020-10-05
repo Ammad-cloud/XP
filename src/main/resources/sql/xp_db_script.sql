@@ -15,16 +15,23 @@ create table Activity
 		primary key (id)
 );
 
+DROP TABLE IF EXISTS EquipmentTypes;
+CREATE TABLE EquipmentTypes
+(
+	equipmentType VARCHAR(40) NOT NULL,
+	PRIMARY KEY (equipmentType)
+);
+
 DROP TABLE IF EXISTS Equipment;
 create table Equipment
 (
 	id int auto_increment,
 	equipmentType varchar(40) not null,
 	needsRepair boolean default false not null,
-	constraint Equipment_pk
-		primary key (id)
-
+	PRIMARY KEY (id),
+    FOREIGN KEY (equipmentType) REFERENCES EquipmentTypes(equipmentType)
 );
+
 DROP TABLE IF EXISTS ActivityEquipment;
 create table ActivityEquipment
 (

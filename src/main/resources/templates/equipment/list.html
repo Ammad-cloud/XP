@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Udstyr</title>
+</head>
+<body>
+<form th:action="@{/equipment/list}" method="post">
+    <table>
+        <tr>
+            <td><label>Udstyrstype:</label></td>
+            <td><select name="type">
+                <option th:each = "type: ${equipmentTypes}" th:text="${type.type}" th:value="${type.type}"></option>
+            </select></td>
+            <td><input type="submit" value="Filtrér"></td>
+        </tr>
+    </table>
+</form>
+<form th:action="@{/equipment/list}" method="get">
+    <input type="submit" value="Vis alle">
+</form>
+<table>
+    <thead>
+    <th>ID</th>
+    <th>Udstyrstype</th>
+    <th>Under reparation</th>
+    </thead>
+    <tr th:each = "equipment: ${equipment}">
+        <td th:text="${equipment.id}"/>
+        <td th:text="${equipment.type}"/>
+        <td th:text="${equipment.needsRepair ? 'Ja' : 'Nej'}"/>
+        <td>
+            <a th:href="@{'/equipment/edit/'+${equipment.id}}">
+                <button>Redigér udstyr</button>
+            </a>
+        </td>
+        <td>
+            <a th:href="@{'/equipment/delete/'+${equipment.id}}">
+                <button>Slet udstyr</button>
+            </a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

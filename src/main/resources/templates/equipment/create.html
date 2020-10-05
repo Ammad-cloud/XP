@@ -9,17 +9,21 @@
 <form action="/equipment/create" method="post">
     <table>
         <tr>
-            <td><label>Type:</label></td>
-            <td><input type="text" name="type"></td>
+            <td><label>Type</label></td>
+            <td>
+                <select name="type">
+                    <option th:each = "type: ${equipmentTypes}" th:text="${type.type}" th:value="${type.type}"></option>
+                </select>
+            </td>
         </tr>
         <tr>
             <td><label>Reparationsstatus: </label></td>
             <td>
-                <label>Skal repareres</label>
+                <label>Under reparation</label>
                 <input type="radio" value="true" name="needsRepair">
             </td>
             <td>
-                <label>Skal ikke repareres</label>
+                <label>Ikke under reparation</label>
                 <input type="radio" value="false" name="needsRepair">
             </td>
         </tr>
