@@ -21,7 +21,6 @@ create table Equipment
 	id int auto_increment,
 	equipmentType varchar(40) not null,
 	needsRepair boolean default false not null,
-    price int,
 	constraint Equipment_pk
 		primary key (id)
 

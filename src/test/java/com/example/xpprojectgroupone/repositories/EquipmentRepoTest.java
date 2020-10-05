@@ -33,12 +33,12 @@ class EquipmentRepoTest {
 
     @Test
     void create() {
-        Equipment equipment = new Equipment();
-        equipment.setType("Gokart");
-        equipment.setNeedsRepair(true);
+        Equipment eq = new Equipment();
+        eq.setType("Gokart");
+        eq.setNeedsRepair(true);
 
-        equipmentRepo.add(equipment);
-        assertEquals(equipment.toString(),equipmentRepo.read(0).toString());
+        equipmentRepo.add(eq);
+        assertEquals(eq.toString(), equipmentRepo.read(1).toString());
 
 }
 

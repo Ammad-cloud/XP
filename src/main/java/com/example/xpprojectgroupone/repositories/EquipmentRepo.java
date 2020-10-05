@@ -44,8 +44,8 @@ public class EquipmentRepo {
     }*/
     public boolean add(Equipment equipment) {
         try {
-            PreparedStatement createEquipment = conn.prepareStatement("INSERT INTO Equipment VALUES (?, ?, ?);");
-            createEquipment.setInt(1, 0);
+            PreparedStatement createEquipment = conn.prepareStatement("INSERT INTO Equipment (equipmentType, needsRepair) VALUES (?, ?);");
+            //createEquipment.setInt(1, 0);
             createEquipment.setString(1, equipment.getType());
             createEquipment.setBoolean(2, equipment.isNeedsRepair());
             createEquipment.executeUpdate();
