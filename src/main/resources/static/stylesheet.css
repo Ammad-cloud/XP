@@ -254,7 +254,7 @@ hr {
 
 .header {
     height: 200px;
-    background-color: #e2e2e2;
+    background-color: lightgrey;
     vertical-align: middle;
 }
 
@@ -299,7 +299,7 @@ hr {
 }
 
 .backgroundColor{
-    background: burlywood;
+    background: lightgrey;
 }
 
 
