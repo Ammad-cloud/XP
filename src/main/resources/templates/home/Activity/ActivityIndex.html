@@ -1,10 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
+<form action="createActivity.html" method="get">
+    <button type="Create" formaction="/createActivity">Opret Aktivitet</button>
+</form>
+
+
+<div>
+    <table>
+
+        <br>
+        <br>
+        <tr th:each="activity : ${activity}">
+            <td th:text="${activity.getId()}"></td>
+            <td th:text="${activity.getName()}"></td>
+            <td th:text="${activity.getDescription()}"></td>
+            <td th:text="${activity.getAgeLimit()}"></td>
+            <td th:text="${activity.getHeightLimit()}"></td>
+            <td th:text="${activity.getPrice()}"></td>
+
+            <td>
+                <a th:href="@{/updateActivity(id=${activity.getId()})}"><button class="btn-ed">Update</button></a>
+                <a th:href="@{/deleteActivity(id=${activity.getId()})}"><button class="btn-del">Delete</button></a>
+            </td>
+
+        </tr>
+    </table>
+</div>
+
+<form action="index.html" method="get">
+    <button type="Create" formaction="/home">Hjem</button>
+</form>
+
+
 
 </body>
 </html>

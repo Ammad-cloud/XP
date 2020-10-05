@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel = stylesheet href="/../stylesheet.css" type="text/css">
+    <meta charset="UTF-8">
+    <img style="float: left" src="/adventurelogo2.jpeg" width="500" height="200" alt="Billedet er ikke vist">
+</head>
+<body class="backgroundColor">
+    <div class="header">
+    </div>
+    <table id="main-table" class="table table-many border table-header-sticky">
+        <thead>
+        <tr>
+            <th class="border-right">Aktivitet</th>
+            <th class="border-right">Beskrivelse</th>
+            <th class="border-right">Udstyr ID</th>
+            <th class="border-right">Minimum alder</th>
+            <th class="border-right">Minimum højde</th>
+            <th class="border-right">Pris</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each = "activity: ${activities}">
+            <td th:text="${activity.id}"/>
+            <td th:text="${activity.name}"/>
+            <td th:text="${activity.description}"/>
+            <td th:text="${activity.equipment}"/>
+            <td th:text="${activity.ageLimit}"/>
+            <td th:text="${activity.heightLimit}"/>
+            <td th:text="${activity.price}"/>
+            <td>
+                <a th:href="@{'/activity/view-one/'+${activity.id}}">
+                    <button class="btn green-button">Se aktivitet</button>
+                </a>
+            </td>
+            <td>
+                <a th:href="@{'/activity/edit/'+${activity.id}}">
+                    <button class="btn blue-button">Redigér aktivitet</button>
+                </a>
+            </td>
+            <td>
+                <a th:href="@{'/activity/delete/'+${activity.id}}">
+                    <button class="btn red-button">Slet aktivitet</button>
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</body>
+</html>
