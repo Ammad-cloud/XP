@@ -31,8 +31,9 @@ public class EquipmentController {
     @GetMapping("/paintball/list")
     public String managePaintball(Model model) {
         model.addAttribute("viewEquipment", equipmentRepo.readPaintball());
-        return "home/Equipment/manageSumo";
+        return "home/Equipment/managePaintball";
     }
+
 }
 
 
