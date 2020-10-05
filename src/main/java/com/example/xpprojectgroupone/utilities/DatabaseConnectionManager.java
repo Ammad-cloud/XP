@@ -14,6 +14,10 @@ public class DatabaseConnectionManager {
 
 
     public static Connection getDBConnection() {
+
+        /*
+        Connect to config.properties
+         */
         Properties prop = new Properties();
         try {
             FileInputStream propertyFile = new FileInputStream("src/main/resources/application.properties");
@@ -29,10 +33,16 @@ public class DatabaseConnectionManager {
             return DriverManager.getConnection(URL,USER,PASSWORD);
         } catch (SQLException throwables) {
             System.out.println(URL + USER + PASSWORD);
-            throwables.printStackTrace();
+        }
+    /*
+        Connection Manager
+         */
+
+        try {
+            return DriverManager.getConnection(URL,USER,PASSWORD);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return null;
     }
-
-
 }
