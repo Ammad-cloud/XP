@@ -1,14 +1,20 @@
 package com.example.xpprojectgroupone.models;
 
-public class Activity {
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+@Entity
+public class Activity {
+    @Id
     private int id;
     private String name;
     private String description;
-    private int equipmentId;
     private int ageLimit;
     private int heightLimit;
     private double price;
+
+    //Foreign key
+    private int equipmentId;
 
     public Activity() {
     }
