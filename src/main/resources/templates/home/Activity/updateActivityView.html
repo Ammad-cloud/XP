@@ -3,38 +3,55 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Redigér aktivitet</title>
+    <link rel="stylesheet" href="/../stylesheet.css" type="text/css">
+    <form action="index.html" method="get">
+        <button type="Create" class="btn blue-button" style="float: right; margin-right: 20px" formaction="/home">Hjem</button>
+    </form>
+    <img style="float: right" src="/adventurelogo2.jpeg" width="500" height="200" alt="Billedet er ikke vist">
 </head>
-<body>
+<body class="backgroundColor">
+<div class="header">
+    <h1>Redigér aktivitet</h1>
+</div>
 <div>
+    <table>
+        <div class="bg">
     <form class="forms" action="#" th:action="@{/updatedActivity}" th:object="${activity}"
           method="post">
 
-        <br>
-        <br>
         <input type="hidden" th:field="*{id}" id="activityId">
 
-        <label for="activityName">Aktivitets Navn</label>
-        <input type="text" th:field="*{name}" name="activityName" id="activityName"/>
-        <br><br>
+        <tr>
+            <td><label for="activityName">Aktivitets Navn</label></td>
+            <td><input type="text" th:field="*{name}" name="activityName" id="activityName"/></td>
+            <br><br>
+        </tr>
+        <tr>
+            <td><label for="activityDesc">Aktivitets Beskrivelse</label></td>
+            <td><input type="text" th:field="*{description}" name="activityDesc" id="activityDesc"/><br><br></td>
+        </tr>
 
-        <label for="activityDesc">Aktivitets Beskrivelse</label>
-        <input type="text" th:field="*{description}" name="activityDesc" id="activityDesc"/><br><br>
+        <tr>
+            <td><label for="activityAgeLimit">Aldersbegrænsning</label></td>
+            <td><input type="text" th:field="*{ageLimit}" name="activityAgeLimit" id="activityAgeLimit"/><br><br></td>
+        </tr>
 
-        <label for="activityAgeLimit">Aldersbegrænsning</label>
-        <input type="text" th:field="*{ageLimit}" name="activityAgeLimit" id="activityAgeLimit"/><br><br>
+        <tr>
+            <td><label for="heightLimit">Minimums Højde</label></td>
+            <td><input type="text" th:field="*{heightLimit}" name="heightLimit" id="heightLimit"/><br><br></td>
+        </tr>
 
-        <label for="heightLimit">Minimums Højde</label>
-        <input type="text" th:field="*{heightLimit}" name="heightLimit" id="heightLimit"/><br><br>
-
-        <label for="activityPrice">Pris</label>
-        <input type="text" th:field="*{price}" name="activityPrice" id="activityPrice"/><br><br>
-
-        <input type="submit" class="btn-ed" value="Update">
+        <tr>
+            <td><label for="activityPrice">Pris</label></td>
+            <td><input type="text" th:field="*{price}" name="activityPrice" id="activityPrice"/><br><br></td>
+        </tr>
     </form>
+        </div>
+    </table>
+    <input type="submit" class="btn-ed" value="Opdater">
+
 </div>
-
-
 
 </body>
 </html>
