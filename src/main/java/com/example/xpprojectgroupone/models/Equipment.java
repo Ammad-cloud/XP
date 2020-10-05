@@ -6,13 +6,12 @@ public class Equipment {
     private int id;
     private String type;
     private boolean needsRepair;
-    private double price;
 
-    public Equipment(int id, String type, boolean needsRepair, double price) {
+    // Constructor
+    public Equipment(int id, String type, boolean needsRepair) {
         this.id = id;
         this.type = type;
         this.needsRepair = needsRepair;
-        this.price = price;
     }
 
     public Equipment(){
@@ -31,23 +30,21 @@ public class Equipment {
         return type;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
     public boolean isNeedsRepair() {
         return needsRepair;
+    }
+
+    // Setters
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public void setNeedsRepair(boolean needsRepair) {
         this.needsRepair = needsRepair;
     }
 
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
+    public String toString() {
+        return " Type " + type + " Needs repair " + needsRepair;
     }
 }

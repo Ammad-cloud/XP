@@ -30,4 +30,22 @@ public class EquipmentController {
         return "redirect:/equipment/create";
     }
 
+    @GetMapping("/gokart/list")
+    public String manageEquipment(Model model) {
+        model.addAttribute("viewEquipment", equipmentRepo.readGokart());
+        return "home/Equipment/manageGokarts";
+    }
+
+    @GetMapping("/sumo/list")
+    public String manageSumo(Model model) {
+        model.addAttribute("viewEquipment", equipmentRepo.readSumo());
+        return "home/Equipment/manageSumo";
+    }
+
+    @GetMapping("/paintball/list")
+    public String managePaintball(Model model) {
+        model.addAttribute("viewEquipment", equipmentRepo.readPaintball());
+        return "home/Equipment/manageSumo";
+    }
+
 }
