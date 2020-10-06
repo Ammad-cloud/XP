@@ -25,7 +25,6 @@ public class ReservationController {
     @GetMapping("/list")
     public String list(Model model){
         model.addAttribute("reservations", rr.fetchAll());
-        System.out.println(rr.fetchAll().size());
         return "reservation/display-reservations";
     }
 
