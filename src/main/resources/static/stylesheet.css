@@ -244,6 +244,10 @@ hr {
     background-color: palegreen;
 }
 
+.orange-button{
+    background-color: orange;
+}
+
 .yellow-button {
     background-color: yellow;
 }
@@ -311,6 +315,19 @@ hr {
     border: 3px;
     padding: 10px;
 }
+
+.tabulatorLeft{
+    margin-left: 10px;
+}
+
+.vertical-center {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
 
 
 

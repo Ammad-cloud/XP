@@ -6,18 +6,23 @@
     <link rel = stylesheet href="/../stylesheet.css" type="text/css">
 </head>
 <body class="backgroundColor">
-<img style="float: right" src="/adventurelogo2.jpeg" width="500" height="200" alt="Billedet er ikke vist">
 <div th:replace="fragments/navbar :: navbar"></div>
-<form action="/equipment_type/create" method="post">
-    <table>
-        <tr>
-            <label>Udstyrstype (f.eks. bat)</label>
-            <td><input type="text" th:field="*{equipmentType.type}"></td>
-        </tr>
-        <tr>
-            <td><input type="submit" value="Tilføj udstyrstype"></td>
-        </tr>
-    </table>
-</form>
+<div>
+    <img style="float: right"  src="/../adventurelogo2.jpeg" width="250" height="100" alt="Billedet er ikke vist">
+</div>
+<div style="margin-left: 10px">
+    <h2>Opret udstyrstype</h2>
+    <form action="/equipment_type/create" method="post">
+        <table>
+            <tr>
+                <label>Udstyrstype (f.eks. bat)</label>
+                <td><input type="text" th:field="*{equipmentType.type}"></td>
+            </tr>
+            <tr>
+            </tr>
+        </table>
+        <button type="submit" value="Tilføj udstyrstype" class="btn green-button">Tilføj udstyrstype</button>
+    </form>
+</div>
 </body>
 </html>
