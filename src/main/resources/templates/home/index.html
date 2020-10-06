@@ -4,9 +4,11 @@
     <link rel = stylesheet href="/../stylesheet.css" type="text/css">
     <meta charset="UTF-8">
     <title>Adventure Alley</title>
-    <img style="float: right" src="/adventurelogo2.jpeg" width="500" height="200" alt="Billedet er ikke vist" ></head>
 </head>
 <body class="backgroundColor">
+
+<img style="float: right" src="/adventurelogo2.jpeg" width="500" height="200" alt="Billedet er ikke vist" ></head>
+<div th:replace="fragments/navbar :: navbar"></div>
 <br>
 <br>
     <div style="display: flex; align-items: center; justify-content: center; padding-top: 200px; margin-left: 500px">
@@ -34,8 +36,5 @@
             <p>-</p>
         </div>
     </div>
-<form action="ActivityIndex.html" method="get">
-    <button type="Create" class="btn green-button" style="float: right" formaction="/indexActivity">Aktiviteter</button>
-</form>
 </body>
 </html>
