@@ -17,22 +17,6 @@ public class EquipmentRepo {
         this.conn = DatabaseConnectionManager.getDBConnection();
     }
 
-    /*public void add(Equipment equipment) {
-        String sql = "INSERT INTO Equipment VALUES (0, ?, ?, ?)";
-        template.update(sql, equipment.getType(), equipment.isNeedsRepair());
-        /*try {
-            System.out.println("Equipment repo add running");
-            PreparedStatement myStmt = conn.prepareStatement("");
-            myStmt.setInt(1, equipment.getId());
-            myStmt.setString(2, equipment.getType());
-            myStmt.setBoolean(3, equipment.isNeedsRepair());
-            myStmt.setDouble(4, equipment.getPrice());
-            System.out.println("Connection: " + myStmt.getConnection());
-        } catch (SQLException e){
-            System.out.println("Equipment error " + e);
-        }
-
-    }*/
     public int add(Equipment equipment) {
         try {
             PreparedStatement ps = conn.prepareStatement("INSERT INTO Equipment (equipmentType, needsRepair) VALUES (?, ?);",

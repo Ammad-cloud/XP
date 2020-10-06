@@ -72,22 +72,16 @@ DROP TABLE IF EXISTS Booking;
 create table Booking
 (
 	id int auto_increment,
-	dateTime datetime not null,
-	customerId int not null,
+	date DATETIME not null,
+	customerPhoneNumber int not null,
 	activityId int not null,
-	equipmentId int not null,
-	instructorId int not null,
 	participants int not null,
-	constraint Booking_pk
-		primary key (id),
-	constraint BookingCustomer_fk
-		foreign key (customerId) references Customer(id),
-	constraint BookingActivity_fk
-		foreign key (activityId) references Activity(id),
-	constraint BookingEquipment_fk
-		foreign key (equipmentId) references Equipment(id),
-	constraint BookingInstructor_fk
-		foreign key (instructorId) references Instructor(id)
+    #equipmentId int not null,
+	#instructorId int not null,
+	primary key (id),
+	foreign key (activityId) references Activity(id)
+    #foreign key (instructorId) references Instructor(id),
+	#foreign key (equipmentId) references Equipment(id)
 );
 
 INSERT INTO activity(id, name, description, ageLimit, heightLimit, price) VALUES (default, "Go Cart", "description yo", 16, 160, 70);

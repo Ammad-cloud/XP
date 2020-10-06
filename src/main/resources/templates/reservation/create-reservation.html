@@ -1,10 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Create Reservation</title>
+    <link rel = stylesheet href="/../stylesheet.css" type="text/css">
 </head>
-<body>
-
+<body class="backgroundColor">
+<img style="float: right" src="/adventurelogo2.jpeg" width="500" height="200" alt="Billedet er ikke vist" >
+<div th:replace="fragments/navbar :: navbar"></div>
+<form action="/reservations/create" method="post">
+    <table>
+        <tr>
+            <td><label>Dato:</label></td>
+            <td><input type="date" th:field="${reservation.date}"></td>
+        </tr>
+        <tr>
+            <td><label>Kundens telefonnummer:</label></td>
+            <td><input type="number" th:field="${reservation.customerPhoneNumber}"></td>
+        </tr>
+        <tr>
+            <td><label>Aktivitet:</label></td>
+            <td>
+                <select name="activityId">
+                    <option th:each = "act: ${activities}" th:text="${act.name}" th:value="${act.id}"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td><label>Antal deltagere:</label></td>
+            <td><input type="number" th:field="${reservation.participants}"></td>
+        </tr>
+        <tr>
+            <td><button type="submit">Opret reservation</button></td>
+        </tr>
+    </table>
+</form>
 </body>
 </html>

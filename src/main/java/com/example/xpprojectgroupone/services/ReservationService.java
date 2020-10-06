@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class ReservationService {
     ReservationRepo rp = new ReservationRepo();
 
-    public void submitReservation(Reservation reservation) {
+    /*public void submitReservation(Reservation reservation) {
         rp.createReservation(reservation);
     }
 
@@ -24,5 +24,5 @@ public class ReservationService {
 
     public void deleteReservation(Reservation reservation) {
         rp.deleteReservation(reservation);
-    }
+    }*/
 }

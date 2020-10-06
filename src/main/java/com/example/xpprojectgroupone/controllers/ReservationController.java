@@ -1,54 +1,62 @@
 package com.example.xpprojectgroupone.controllers;
 
 import com.example.xpprojectgroupone.models.Reservation;
-import com.example.xpprojectgroupone.services.ReservationService;
+import com.example.xpprojectgroupone.repositories.ActivityRepo;
+import com.example.xpprojectgroupone.repositories.EquipmentRepo;
+import com.example.xpprojectgroupone.repositories.ReservationRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-
+@RequestMapping("/reservations")
 @Controller
 public class ReservationController {
-    ReservationService rs = new ReservationService();
+    @Autowired
+    ReservationRepo rr;
+    @Autowired
+    ActivityRepo ar;
+    @Autowired
+    EquipmentRepo er;
 
 
     //Til jer der laver front-end, går jeg ud fra I ændrer nogle ting her
     //Men en skabelon om ikke andet, om hvordan det hænger sammen
-    @GetMapping("/display-reservations")
-    public String showReservations(Model model){
-        ArrayList<Reservation> resArray = rs.getReservations();
-        model.addAttribute("reservations", resArray);
+    @GetMapping("/list")
+    public String list(Model model){
+        model.addAttribute("reservations", rr.fetchAll());
+        System.out.println(rr.fetchAll().size());
         return "reservation/display-reservations";
     }
 
-    @GetMapping("/create-reservation")
-    public String createReservation(){
+    @GetMapping("/create")
+    public String create(Model model){
+        model.addAttribute("reservation", new Reservation());
+        model.addAttribute("activities", ar.readAll());
+        model.addAttribute("equipment", er.readAll());
         return "reservation/create-reservation";
     }
 
-    @PostMapping("/submit-reservation")
-    public String submitReservation(@ModelAttribute Reservation reservation){
-        rs.submitReservation(reservation);
-        return "reservation/add-reservation";
+    @PostMapping("/create")
+    public String add(@ModelAttribute Reservation reservation){
+        rr.add(reservation);
+        return "redirect:/reservations/list";
     }
 
-    @GetMapping("/edit-reservation")
-    public String editReservation(){
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable("id") int id){
         return "reservation/edit-reservation";
     }
 
-    @PostMapping("/submit-reservation-edit")
-    public String submitEditedReservation(@ModelAttribute Reservation reservation){
-        rs.editReservation(reservation);
+    @PostMapping("/update")
+    public String update(@ModelAttribute Reservation reservation){
+        //rp.edit(reservation);
         return "redirect:display-reservations";
     }
 
-    @PostMapping("/delete-reservation")
-    public String deleteReservation(@ModelAttribute Reservation reservation){
-        rs.deleteReservation(reservation);
+    @PostMapping("/delete/{id}")
+    public String delete(@PathVariable("id") int id){
+        //rp.delete(id);
         return "redirect:display-reservations";
     }
 

@@ -1,26 +1,27 @@
 package com.example.xpprojectgroupone.models;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.sql.Timestamp;
+import java.util.Date;
 
 public class Reservation {
-    int id;
-    Timestamp date;
-    int customerId;
-    int activityId;
-    int equipmentId;
-    int instructorId;
+    private int id;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date date;
+    private int customerPhoneNumber;
+    private int activityId;
+    private String activityName;
     int participants;
 
     public Reservation() {
     }
 
-    public Reservation(int id, Timestamp date, int customerId, int activityId, int equipmentId, int instructorId, int participants) {
+    public Reservation(int id, Date date, int customerPhoneNumber, int activityId, int participants) {
         this.id = id;
         this.date = date;
-        this.customerId = customerId;
+        this.customerPhoneNumber = customerPhoneNumber;
         this.activityId = activityId;
-        this.equipmentId = equipmentId;
-        this.instructorId = instructorId;
         this.participants = participants;
     }
 
@@ -32,20 +33,20 @@ public class Reservation {
         this.id = id;
     }
 
-    public Timestamp getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(Timestamp date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
-    public int getCustomerId() {
-        return customerId;
+    public int getCustomerPhoneNumber() {
+        return customerPhoneNumber;
     }
 
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
+    public void setCustomerPhoneNumber(int customerPhoneNumber) {
+        this.customerPhoneNumber = customerPhoneNumber;
     }
 
     public int getActivityId() {
@@ -56,27 +57,19 @@ public class Reservation {
         this.activityId = activityId;
     }
 
-    public int getEquipmentId() {
-        return equipmentId;
-    }
-
-    public void setEquipmentId(int equipmentId) {
-        this.equipmentId = equipmentId;
-    }
-
-    public int getInstructorId() {
-        return instructorId;
-    }
-
-    public void setInstructorId(int instructorId) {
-        this.instructorId = instructorId;
-    }
-
     public int getParticipants() {
         return participants;
     }
 
     public void setParticipants(int participants) {
         this.participants = participants;
+    }
+
+    public String getActivityName() {
+        return activityName;
+    }
+
+    public void setActivityName(String activityName) {
+        this.activityName = activityName;
     }
 }
