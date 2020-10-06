@@ -191,8 +191,8 @@ hr {
 
 .container {
     position: relative;
-    width: 400px;
-    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12)
+    width: 300px;
+   <!--box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12) -->
 }
 
 .container:hover > img {
@@ -242,6 +242,10 @@ hr {
 
 .green-button {
     background-color: palegreen;
+}
+
+.yellow-button {
+    background-color: yellow;
 }
 
 .blue-button {
