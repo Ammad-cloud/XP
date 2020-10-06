@@ -62,7 +62,7 @@ class ActivityRepoTest {
         System.out.println(activityRepo.read(0));
         assertEquals(activity.toString(),activityRepo.read(0).toString());
 
-        //Den returnere en boolean (false værdi..)
+        //Den returnerer en boolean (false værdi..)
     }
 
     @Test
