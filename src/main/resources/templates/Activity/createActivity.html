@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Opret aktivitet</title>
+    <link rel="stylesheet" href="/../stylesheet.css" type="text/css">
+    <form action="index.html" method="get">
+    </form>
+</head>
+<body class="backgroundColor">
+<div th:replace="fragments/navbar :: navbar"></div>
+<div>
+    <img style="float: right"  src="/../adventurelogo2.jpeg" width="250" height="100" alt="Billedet er ikke vist">
+</div>
+<div style="margin-left:10px">
+    <h1>Opret aktivitet</h1>
+        <form action="/createActivity" id="form" th:action="@{/createActivity}" th:object="${createActivity}"
+                      method="post">
+            <table>
+                    <tr>
+                        <td><label for="name">Name:</label></td>
+                        <td><input type="text" th:field="*{name}" name="name" id="name"/></td>
+                    </tr>
+                    <tr>
+                        <td><label for="description">Description</label></td>
+                        <td><input type="text" th:field="*{description}" name="description" id="description"/></td>
+                    </tr>
+                    <tr>
+                        <td><label for="ageLimit">Aldersbegrænsning</label>
+                        <td><input type="text" th:field="*{ageLimit}" name="ageLimit" id="ageLimit"/></td>
+                    </tr>
+                    <tr>
+                        <td><label for="heightLimit">Højdebregrænsning</label>
+                     <td><input type="text" th:field="*{heightLimit}" name="heightLimit" id="heightLimit"/></td>
+                    </tr>
+                    <tr>
+                        <td><label for="price">Pris</label>
+                        <td><input type="text" th:field="*{price}" name="price" id="price"/></td>
+                    </tr>
+            </table>
+        </form>
+    <button  type="submit" class="btn green-button" form="form" value="Opret">Opret</button>
+    <button type="reset" style="margin-left:5px" class="btn red-button" form="form" value="Fortryd">Fortryd</button>
+</div>
+</body>
+</html>

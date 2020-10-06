@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Tilføj udstyr</title>
+    <link rel = stylesheet href="/../stylesheet.css" type="text/css">
+</head>
+<body class="backgroundColor">
+<div th:replace="fragments/navbar :: navbar"></div>
+<div>
+    <img style="float: right"  src="/../adventurelogo2.jpeg" width="250" height="100" alt="Billedet er ikke vist">
+</div>
+<div style="margin-left:10px">
+    <form action="/equipment/create" method="post">
+        <h2>Opret Udstyr</h2>
+        <table>
+            <tr>
+                <td><label>Type</label></td>
+                <td>
+                    <select name="type">
+                        <option th:each = "type: ${equipmentTypes}" th:text="${type.type}" th:value="${type.type}"></option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label>Reparationsstatus: </label></td>
+                <td>
+                    <label>Under reparation</label>
+                    <input type="radio" value="true" name="needsRepair">
+                </td>
+                <td>
+                    <label>Ikke under reparation</label>
+                    <input th:checked="true" type="radio" value="false" name="needsRepair">
+                </td>
+            </tr>
+        </table>
+        <button style="margin-left: 10px" class="btn green-button" type="submit" value="Opret">Opret</button>
+    </form>
+</div>
+</body>
+</html>

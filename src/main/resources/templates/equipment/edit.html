@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Redigér udstyr</title>
+    <link rel = stylesheet href="/../stylesheet.css" type="text/css">
+</head>
+<body class="backgroundColor">
+<div th:replace="fragments/navbar :: navbar"></div>
+<div>
+    <img style="float: right"  src="/../adventurelogo2.jpeg" width="250" height="100" alt="Billedet er ikke vist">
+</div>
+<form action="/equipment/update" method="post">
+    <h2 th:text="${equipment.type} + ' - ' + ${equipment.id}"></h2>
+    <table>
+        <div>
+            <tr>
+                <td><label>Udstyrstype</label></td>
+                <td>
+                    <select name="type">
+                        <option th:selected="${equipment.type == type.type}"
+                                th:each = "type: ${equipmentTypes}"
+                                th:text="${type.type}"
+                                th:value="${type.type}">
+                        </option>
+                    </select>
+                </td>
+            </tr>
+        </div>
+        <div style="margin-bottom: 10px">
+            <tr>
+                <td><label>Reparationsstatus: </label></td>
+                <td>
+                    <label>Under reparation</label>
+                    <input th:attr="checked=${equipment.needsRepair}?'true'" type="radio" value="true" name="needsRepair">
+                </td>
+                <td>
+                    <label>Ikke under reparation</label>
+                    <input th:attr="checked=${!equipment.needsRepair}?'true'" type="radio" value="false" name="needsRepair">
+                </td>
+            </tr>
+        </div>
+        <input type="hidden" th:field="${equipment.id}">
+        <tr>
+            <td>
+                <button class="btn green-button" type="submit" value="Gem ændringer">Gem Ændringer</button>
+            </td>
+        </tr>
+
+    </table>
+</form>
+</body>
+</html>

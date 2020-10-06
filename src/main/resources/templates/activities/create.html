@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Tilføj Aktivitet</title>
+    <link rel="stylesheet" href="/../stylesheet.css" type="text/css"/>
+</head>
+    <body class="backgroundColor">
+        <h1>Opret Aktivitet</h1>
+        <form action="/activities/create" id="form" method="post">
+            <table>
+                <tr>
+                    <td><label>Name:</label></td>
+                    <td><input type="text" th:field="*{activity.name}"></td>
+                </tr>
+                <tr>
+                    <td><label>Beskrivelse:</label></td>
+                    <td><input type="text" th:field="*{activity.description}"></td>
+                </tr>
+                <tr>
+                    <td><label>Udstyr:</label></td>
+                    <td><select name="equipment.id">
+                        <option th:each = "equipment: ${equipment}" th:text="${equipment.type}" th:value="${equipment.id}"></option>
+                    </select></td>
+                </tr>
+                <tr>
+                    <td><label>Aldersgrænse:</label></td>
+                    <td><input type="number" th:field="*{activity.ageLimit}"></td>
+                </tr>
+                <tr>
+                    <td><label>Minimum Højde:</label></td>
+                    <td><input type="number" th:field="*{activity.heightLimit}"></td>
+                </tr>
+                <tr>
+                    <td><label>Pris pr. person:</label></td>
+                    <td><input type="number" th:field="*{activity.price}"></td>
+                </tr>
+            </table>
+        </form>
+    <button type="submit" class="btn green-button" form="form" value="Submit">Tilføj Aktivitet</button>
+    </body>
+</html>

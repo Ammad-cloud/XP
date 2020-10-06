@@ -2,6 +2,7 @@ package com.example.xpprojectgroupone.repositories;
 
 import com.example.xpprojectgroupone.models.Activity;
 import com.example.xpprojectgroupone.utilities.DatabaseConnectionManager;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,9 +10,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
+@Repository
 public class ActivityRepo {
-
     // JDBC driver
     private Connection conn;
 

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel = stylesheet href="/../stylesheet.css" type="text/css">
+    <meta charset="UTF-8">
+    <title>Paintball</title>
+
+</head>
+
+<body class="backgroundColor">
+
+<img style="float: right" src="/adventure_alley_logo.jpeg" alt="Billedet er ikke vist">
+
+    <a th:href="@{/}"><button class="btn-ed">Home</button></a>
+    <a th:href="@{//equipment/create}"><button class="btn-ed">Add new paintball gun</button></a>
+
+    <div align="center">
+        <header>
+            <h1>Paintball</h1>
+            <p>true = Available</p>
+            <p>false = Unavailable</p>
+        </header>
+    </div>
+<div>
+    <table align="center">
+        <tr th:each="equipment : ${viewEquipment}">
+            <td th:text="${equipment.id}"></td>
+            <td th:text="${equipment.type}"></td>
+            <td th:text="${equipment.needsRepair}"></td>
+
+            <td>
+                <a th:href="@{/updateEquipment(id=${equipment.id})}"><button class="btn-ed">Update</button></a>
+                <a th:href="@{/deleteEquipment(id=${equipment.id})}"><button class="btn-del">Delete</button></a>
+            </td>
+        </tr>
+    </table>
+
+</div>
+
+
+</body>
+</html>

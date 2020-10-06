@@ -191,8 +191,8 @@ hr {
 
 .container {
     position: relative;
-    width: 400px;
-    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12)
+    width: 300px;
+   <!--box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12) -->
 }
 
 .container:hover > img {
@@ -242,6 +242,14 @@ hr {
 
 .green-button {
     background-color: palegreen;
+}
+
+.orange-button{
+    background-color: orange;
+}
+
+.yellow-button {
+    background-color: yellow;
 }
 
 .blue-button {
@@ -307,6 +315,19 @@ hr {
     border: 3px;
     padding: 10px;
 }
+
+.tabulatorLeft{
+    margin-left: 10px;
+}
+
+.vertical-center {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
 
 
 

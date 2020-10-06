@@ -1,21 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+   <!--Farven skal ændres på table, så tabellen ikke falder ud i samme farve som baggrunden.-->
     <head>
         <link rel = stylesheet href="/../stylesheet.css" type="text/css">
         <meta charset="UTF-8">
         <title>Opret</title>
-        <form action="index.html" method="get">
-            <button type="Create" class="btn blue-button" style="float: right; margin-right: 20px" formaction="/home">Hjem</button>
-        </form>
-        <img style="float: right" src="/adventurelogo2.jpeg" width="500" height="200" alt="Billedet er ikke vist">
     </head>
     <body class="backgroundColor">
-    <div class="header">
-        <h1>Aktivitetsliste</h1>
+    <div th:replace="fragments/navbar :: navbar"></div>
+    <div>
+        <img style="float: right"  src="/../adventurelogo2.jpeg" width="250" height="100" alt="Billedet er ikke vist">
     </div>
+        <h1 style="margin-left: 10px">Aktivitetsliste</h1>
     <form action="createActivity.html" method="get">
-        <button type="Create" class="btn green-button" style="float: right; margin-top: 20px" formaction="/createActivity">Opret Aktivitet</button>
+        <button type="Create" class="btn green-button" style="float: left; margin-top: 35px" formaction="/createActivity">Opret Aktivitet</button>
     </form>
     <div>
         <table id="main-table" class="table table-many border table-header-sticky">
@@ -24,7 +23,6 @@
                 <th class="border-right">ID</th>
                 <th class="border-right">Navn</th>
                 <th class="border-right">Beskrivelse</th>
-                <th class="border-right">Udstyr ID</th>
                 <th class="border-right">Minimum alder</th>
                 <th class="border-right">Minimum højde</th>
                 <th class="border-right">Pris pr. time</th>
@@ -33,8 +31,6 @@
                 <th></th>
             </tr>
             </thead>
-            <br>
-            <br>
             <tr th:each="activity : ${activity}">
                 <td th:text="${activity.getId()}"></td>
                 <td th:text="${activity.getName()}"></td>
@@ -45,8 +41,8 @@
                 <td></td>
                 <td></td>
                 <td>
-                    <a th:href="@{/updateActivity(id=${activity.getId()})}"><button class="btn green-button">Redigér</button></a>
-                    <a th:href="@{/deleteActivity(id=${activity.getId()})}"><button class="btn red-button">Slet</button></a>
+                    <a th:href="@{/updateActivity(id=${activity.getId()})}"><button style="margin:10px" class="btn blue-button">Redigér</button></a>
+                    <a th:href="@{/deleteActivity(id=${activity.getId()})}"><button style="margin: 10px" class="btn red-button">Slet</button></a>
                 </td>
 
             </tr>

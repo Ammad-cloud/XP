@@ -1,0 +1,40 @@
+<!--Coded by Julius-->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/../stylesheet.css" type="text/css">
+</head>
+<body>
+<div class="navbar" th:fragment="navbar">
+    <div>
+        <a href="/home">
+            <img src="/../adventurelogo2.jpeg" height="40" width="125" style="float:right">
+        </a>
+    </div>
+    <div style="margin-top:12px" class="dropdown">
+        <a class="dropbtn" href="/indexActivity" >Aktiviteter</a>
+        <div class="dropdown-content">
+            <a href="/indexActivity">Se alle aktiviteter</a>
+            <a href="/createActivity">Opret en aktivitet</a>
+        </div>
+    </div>
+    <div style="margin-top:12px" class="dropdown">
+        <a class="dropbtn" href="#">Reservationer</a>
+        <div class="dropdown-content">
+            <a href="#">Se alle reservation</a>
+            <a href="#">Opret en reservation</a>
+        </div>
+    </div>
+    <div style="margin-top:12px" class="dropdown">
+        <a class="dropbtn" href="#">Udstyr</a>
+        <div class="dropdown-content">
+            <a href="/equipment/list">Se alt udstyr</a>
+            <a href="/equipment_type/create">Opret udstyrstype</a>
+            <a href="/equipment/create">Opret udstyr</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

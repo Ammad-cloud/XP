@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Redigér aktivitet</title>
+    <link rel="stylesheet" href="/../stylesheet.css" type="text/css">
+    <form action="index.html" method="get">
+    </form>
+    </div>
+</head>
+<body class="backgroundColor">
+    <div th:replace="fragments/navbar :: navbar"></div>
+    <div>
+        <img style="float: right"  src="/../adventurelogo2.jpeg" width="250" height="100" alt="Billedet er ikke vist">
+    </div>
+    <div style="margin-left:10px">
+        <h1>Redigér aktivitet</h1>
+        <table>
+            <form action="/updatedActivity" id="form" th:action="@{/updatedActivity}" th:object="${activity}" method="post">
+
+                <input type="hidden" th:field="*{id}" id="activityId"/>
+
+                <tr>
+                    <td><label for="activityName">Aktivitets Navn</label></td>
+                    <td><input type="text" th:field="*{name}" name="activityName" id="activityName"/></td>
+                </tr>
+                <tr>
+                    <td><label for="activityDesc">Aktivitets Beskrivelse</label></td>
+                    <td><input type="text" th:field="*{description}" name="activityDesc" id="activityDesc"/></td>
+                </tr>
+
+                <tr>
+                    <td><label for="activityAgeLimit">Aldersbegrænsning</label></td>
+                    <td><input type="text" th:field="*{ageLimit}" name="activityAgeLimit" id="activityAgeLimit"/></td>
+                </tr>
+
+                <tr>
+                    <td><label for="heightLimit">Minimums Højde</label></td>
+                    <td><input type="text" th:field="*{heightLimit}" name="heightLimit" id="heightLimit"/></td>
+                </tr>
+
+                <tr>
+                    <td><label for="activityPrice">Pris</label></td>
+                    <td><input type="text" th:field="*{price}" name="activityPrice" id="activityPrice"/></td>
+                </tr>
+            </form>
+        </table>
+        <button type="submit" form="form" class="btn green-button" value="Opdater">Opdater</button>
+    </div>
+
+
+</body>
+</html>

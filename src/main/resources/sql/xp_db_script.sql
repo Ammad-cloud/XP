@@ -1,7 +1,8 @@
-DROP SCHEMA IF EXISTS `xp-adventure-group-one` ;
-CREATE SCHEMA IF NOT EXISTS `xp-adventure-group-one` DEFAULT CHARACTER SET utf8 ;
+DROP DATABASE IF EXISTS `xp-adventure-group-one` ;
+CREATE DATABASE `xp-adventure-group-one` DEFAULT CHARACTER SET utf8 ;
 USE `xp-adventure-group-one` ;
 
+DROP TABLE IF EXISTS Activity;
 create table Activity
 (
 	id int auto_increment,
@@ -14,15 +15,24 @@ create table Activity
 		primary key (id)
 );
 
+DROP TABLE IF EXISTS EquipmentTypes;
+CREATE TABLE EquipmentTypes
+(
+	equipmentType VARCHAR(40) NOT NULL,
+	PRIMARY KEY (equipmentType)
+);
+
+DROP TABLE IF EXISTS Equipment;
 create table Equipment
 (
 	id int auto_increment,
-	type varchar(40) not null,
+	equipmentType varchar(40) not null,
 	needsRepair boolean default false not null,
-	constraint Equipment_pk
-		primary key (id)
+	PRIMARY KEY (id),
+    FOREIGN KEY (equipmentType) REFERENCES EquipmentTypes(equipmentType)
 );
 
+DROP TABLE IF EXISTS ActivityEquipment;
 create table ActivityEquipment
 (
 	id int auto_increment,
@@ -36,6 +46,7 @@ create table ActivityEquipment
 		foreign key (equipmentId) references Equipment(id)
 );
 
+DROP TABLE IF EXISTS Customer;
 create table Customer
 (
 	id int auto_increment,
@@ -47,6 +58,7 @@ create table Customer
 		primary key (id)
 );
 
+DROP TABLE IF EXISTS Instructor;
 create table Instructor
 (
 	id int auto_increment,
@@ -56,6 +68,7 @@ create table Instructor
 		primary key (id)
 );
 
+DROP TABLE IF EXISTS Booking;
 create table Booking
 (
 	id int auto_increment,
@@ -77,21 +90,30 @@ create table Booking
 		foreign key (instructorId) references Instructor(id)
 );
 
-INSERT INTO activity(id, name, description, ageLimit, heightLimit, price, equipment_price) VALUES (default, "Go Cart", "description yo", 16, 160, 400, 0);
-INSERT INTO activity(id, name, description, ageLimit, heightLimit, price, equipment_price) VALUES (default, "Sumo Wrestling", "description yo", 0, 0, 85, 0);
-INSERT INTO activity(id, name, description, ageLimit, heightLimit, price, equipment_price) VALUES (default, "Paint Ball", "description yo", 16, 0, 250, 1);
-INSERT INTO activity(id, name, description, ageLimit, heightLimit, price, equipment_price) VALUES (default, "Minigolf", "description yo", 0, 0, 100, 0);
+INSERT INTO activity(id, name, description, ageLimit, heightLimit, price) VALUES (default, "Go Cart", "description yo", 16, 160, 70);
+INSERT INTO activity(id, name, description, ageLimit, heightLimit, price) VALUES (default, "Sumo Wrestling", "description yo", 0, 0, 85);
+INSERT INTO activity(id, name, description, ageLimit, heightLimit, price) VALUES (default, "Paint Ball", "description yo", 16, 0, 250);
+INSERT INTO activity(id, name, description, ageLimit, heightLimit, price) VALUES (default, "Minigolf", "description yo", 0, 0, 100);
 
-insert into equipment (id, type, needsRepair) VALUES (default, "Hjelm", false);
-insert into equipment (id, type, needsRepair) VALUES (default, "Dragt", false);
-insert into equipment (id, type, needsRepair) VALUES (default, "Dragt", false);
-insert into equipment (id, type, needsRepair) VALUES (default, "Dragt", false);
-insert into equipment (id, type, needsRepair) VALUES (default, "Maske", false);
-insert into equipment (id, type, needsRepair) VALUES (default, "Handsker", false);
-insert into equipment (id, type, needsRepair) VALUES (default, "Sko", false);
-insert into equipment (id, type, needsRepair) VALUES (default, "Gevær", false);
-insert into equipment (id, type, needsRepair) VALUES (default, "Putter", false);
-insert into equipment (id, type, needsRepair) VALUES (default, "Bolde", false);
+INSERT INTO EquipmentTypes VALUES ("Hjelm");
+INSERT INTO EquipmentTypes VALUES ("Dragt");
+INSERT INTO EquipmentTypes VALUES ("Maske");
+INSERT INTO EquipmentTypes VALUES ("Handsker");
+INSERT INTO EquipmentTypes VALUES ("Sko");
+INSERT INTO EquipmentTypes VALUES ("Gevær");
+INSERT INTO EquipmentTypes VALUES ("Putter");
+INSERT INTO EquipmentTypes VALUES ("Bolde");
+
+insert into Equipment VALUES (default, "Hjelm", false);
+insert into Equipment VALUES (default, "Dragt", false);
+insert into Equipment VALUES (default, "Dragt", false);
+insert into Equipment VALUES (default, "Dragt", false);
+insert into Equipment VALUES (default, "Maske", false);
+insert into Equipment VALUES (default, "Handsker", false);
+insert into Equipment VALUES (default, "Sko", false);
+insert into Equipment VALUES (default, "Gevær", false);
+insert into Equipment VALUES (default, "Putter", false);
+insert into Equipment VALUES (default, "Bolde", false);
 
 alter table instructor
 	add activityId int null;
