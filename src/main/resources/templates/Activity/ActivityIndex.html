@@ -5,15 +5,11 @@
         <link rel = stylesheet href="/../stylesheet.css" type="text/css">
         <meta charset="UTF-8">
         <title>Opret</title>
-        <form action="index.html" method="get">
-            <button type="Create" class="btn blue-button" style="float: right; margin-right: 20px" formaction="/home">Hjem</button>
-        </form>
-        <img style="float: right" src="/adventurelogo2.jpeg" width="500" height="200" alt="Billedet er ikke vist">
+        <img style="float: right" src="/../adventurelogo2.jpeg" width="500" height="200" alt="Billedet er ikke vist">
     </head>
     <body class="backgroundColor">
-    <div class="header">
+    <div th:replace="fragments/navbar :: navbar"></div>
         <h1>Aktivitetsliste</h1>
-    </div>
     <form action="createActivity.html" method="get">
         <button type="Create" class="btn green-button" style="float: right; margin-top: 20px" formaction="/createActivity">Opret Aktivitet</button>
     </form>
@@ -24,7 +20,6 @@
                 <th class="border-right">ID</th>
                 <th class="border-right">Navn</th>
                 <th class="border-right">Beskrivelse</th>
-                <th class="border-right">Udstyr ID</th>
                 <th class="border-right">Minimum alder</th>
                 <th class="border-right">Minimum højde</th>
                 <th class="border-right">Pris pr. time</th>
