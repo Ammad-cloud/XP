@@ -5,7 +5,9 @@
     <title>Opret udstyrstype</title>
     <link rel = stylesheet href="/../stylesheet.css" type="text/css">
 </head>
-<body>
+<body class="backgroundColor">
+<img style="float: right" src="/adventurelogo2.jpeg" width="500" height="200" alt="Billedet er ikke vist">
+<div th:replace="fragments/navbar :: navbar"></div>
 <form action="/equipment_type/create" method="post">
     <table>
         <tr>

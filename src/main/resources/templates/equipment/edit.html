@@ -2,9 +2,12 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Redigér udstyr</title>
+    <link rel = stylesheet href="/../stylesheet.css" type="text/css">
 </head>
-<body>
+<body class="backgroundColor">
+<img style="float: right" src="/adventurelogo2.jpeg" width="500" height="200" alt="Billedet er ikke vist" >
+<div th:replace="fragments/navbar :: navbar"></div>
 <form action="/equipment/update" method="post">
     <h2 th:text="${equipment.type} + ' - ' + ${equipment.id}"></h2>
     <table>

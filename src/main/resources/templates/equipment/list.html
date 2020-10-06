@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Udstyr</title>
+    <link rel = stylesheet href="/../stylesheet.css" type="text/css">
 </head>
-<body>
+<body class="backgroundColor">
+<img style="float: right" src="/adventurelogo2.jpeg" width="500" height="200" alt="Billedet er ikke vist" >
+<div th:replace="fragments/navbar :: navbar"></div>
 <form th:action="@{/equipment/list}" method="post">
     <table>
         <tr>

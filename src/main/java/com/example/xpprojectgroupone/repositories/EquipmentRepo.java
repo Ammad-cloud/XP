@@ -5,10 +5,7 @@ import com.example.xpprojectgroupone.utilities.DatabaseConnectionManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,19 +33,22 @@ public class EquipmentRepo {
         }
 
     }*/
-    public boolean add(Equipment equipment) {
+    public int add(Equipment equipment) {
         try {
-            PreparedStatement createEquipment = conn.prepareStatement("INSERT INTO Equipment (equipmentType, needsRepair) VALUES (?, ?);");
-            //createEquipment.setInt(1, 0);
-            createEquipment.setString(1, equipment.getType());
-            createEquipment.setBoolean(2, equipment.isNeedsRepair());
-            createEquipment.executeUpdate();
-            return true;
+            PreparedStatement ps = conn.prepareStatement("INSERT INTO Equipment (equipmentType, needsRepair) VALUES (?, ?);",
+                    Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, equipment.getType());
+            ps.setBoolean(2, equipment.isNeedsRepair());
+            ps.executeUpdate();
+            // Getting auto generated ID
+            ResultSet rs = ps.getGeneratedKeys();
+            rs.next();
+            return rs.getInt(1);
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return false;
+        return -1;
     }
 
     public boolean update(Equipment equipment){
