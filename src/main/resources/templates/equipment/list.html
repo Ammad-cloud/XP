@@ -6,43 +6,52 @@
     <link rel = stylesheet href="/../stylesheet.css" type="text/css">
 </head>
 <body class="backgroundColor">
-<img style="float: right" src="/adventurelogo2.jpeg" width="500" height="200" alt="Billedet er ikke vist" >
 <div th:replace="fragments/navbar :: navbar"></div>
-<form th:action="@{/equipment/list}" method="post">
-    <table>
-        <tr>
-            <td><label>Udstyrstype:</label></td>
-            <td><select name="type">
-                <option th:each = "type: ${equipmentTypes}" th:text="${type.type}" th:value="${type.type}"></option>
-            </select></td>
-            <td><input type="submit" value="Filtrér"></td>
+<div>
+    <img style="float: right"  src="/../adventurelogo2.jpeg" width="250" height="100" alt="Billedet er ikke vist">
+</div>
+<div style="margin-left:10px">
+    <h2>List af udstyr</h2>
+    <form th:action="@{/equipment/list}" method="post">
+        <div style="position:absolute; margin:0; top:18.5%; left:40%;">
+            <table>
+                <tr>
+                    <td><label>Udstyrstype:</label></td>
+                    <td><select name="type">
+                        <option th:each = "type: ${equipmentTypes}" th:text="${type.type}" th:value="${type.type}"></option>
+                    </select></td>
+                    <td><button type="submit" value="Filtrér">Filtrér</button>
+                </tr>
+            </table>
+        </div>
+    </form>
+    <form th:action="@{/equipment/list}" method="get">
+        <button style="margin-top:35px" class="btn blue-button" type="submit" value="Vis alle">Vis alle</button>
+    </form>
+    <table id="main-table" class="table table-many border table-header-sticky">
+        <thead>
+        <th class="border-right">ID:</th>
+        <th class="border-right">Udstyrstype:</th>
+        <th >Under reparation:</th>
+        <th></th>
+        <th></th>
+        </thead>
+        <tr th:each = "equipment: ${equipment}">
+            <td th:text="${equipment.id}"/>
+            <td th:text="${equipment.type}"/>
+            <td th:text="${equipment.needsRepair ? 'Ja' : 'Nej'}"/>
+            <td>
+                <a th:href="@{'/equipment/edit/'+${equipment.id}}">
+                    <button class="btn blue-button">Redigér udstyr</button>
+                </a>
+            </td>
+            <td>
+                <a th:href="@{'/equipment/delete/'+${equipment.id}}">
+                    <button style="" class="btn red-button">Slet udstyr</button>
+                </a>
+            </td>
         </tr>
     </table>
-</form>
-<form th:action="@{/equipment/list}" method="get">
-    <input type="submit" value="Vis alle">
-</form>
-<table>
-    <thead>
-    <th>ID</th>
-    <th>Udstyrstype</th>
-    <th>Under reparation</th>
-    </thead>
-    <tr th:each = "equipment: ${equipment}">
-        <td th:text="${equipment.id}"/>
-        <td th:text="${equipment.type}"/>
-        <td th:text="${equipment.needsRepair ? 'Ja' : 'Nej'}"/>
-        <td>
-            <a th:href="@{'/equipment/edit/'+${equipment.id}}">
-                <button>Redigér udstyr</button>
-            </a>
-        </td>
-        <td>
-            <a th:href="@{'/equipment/delete/'+${equipment.id}}">
-                <button>Slet udstyr</button>
-            </a>
-        </td>
-    </tr>
-</table>
+</div>
 </body>
 </html>

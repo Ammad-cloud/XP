@@ -8,42 +8,47 @@
     <form action="index.html" method="get">
     </form>
     </div>
-    <img style="float: right" src="/../../adventurelogo2.jpeg" width="500" height="200" alt="Billedet er ikke vist">
 </head>
 <body class="backgroundColor">
     <div th:replace="fragments/navbar :: navbar"></div>
-    <h1>Redigér aktivitet</h1>
-    <table>
-        <form action="/updatedActivity" id="form" th:action="@{/updatedActivity}" th:object="${activity}" method="post">
+    <div>
+        <img style="float: right"  src="/../adventurelogo2.jpeg" width="250" height="100" alt="Billedet er ikke vist">
+    </div>
+    <div style="margin-left:10px">
+        <h1>Redigér aktivitet</h1>
+        <table>
+            <form action="/updatedActivity" id="form" th:action="@{/updatedActivity}" th:object="${activity}" method="post">
 
-            <input type="hidden" th:field="*{id}" id="activityId"/>
+                <input type="hidden" th:field="*{id}" id="activityId"/>
 
-            <tr>
-                <td><label for="activityName">Aktivitets Navn</label></td>
-                <td><input type="text" th:field="*{name}" name="activityName" id="activityName"/></td>
-            </tr>
-            <tr>
-                <td><label for="activityDesc">Aktivitets Beskrivelse</label></td>
-                <td><input type="text" th:field="*{description}" name="activityDesc" id="activityDesc"/></td>
-            </tr>
+                <tr>
+                    <td><label for="activityName">Aktivitets Navn</label></td>
+                    <td><input type="text" th:field="*{name}" name="activityName" id="activityName"/></td>
+                </tr>
+                <tr>
+                    <td><label for="activityDesc">Aktivitets Beskrivelse</label></td>
+                    <td><input type="text" th:field="*{description}" name="activityDesc" id="activityDesc"/></td>
+                </tr>
 
-            <tr>
-                <td><label for="activityAgeLimit">Aldersbegrænsning</label></td>
-                <td><input type="text" th:field="*{ageLimit}" name="activityAgeLimit" id="activityAgeLimit"/></td>
-            </tr>
+                <tr>
+                    <td><label for="activityAgeLimit">Aldersbegrænsning</label></td>
+                    <td><input type="text" th:field="*{ageLimit}" name="activityAgeLimit" id="activityAgeLimit"/></td>
+                </tr>
 
-            <tr>
-                <td><label for="heightLimit">Minimums Højde</label></td>
-                <td><input type="text" th:field="*{heightLimit}" name="heightLimit" id="heightLimit"/></td>
-            </tr>
+                <tr>
+                    <td><label for="heightLimit">Minimums Højde</label></td>
+                    <td><input type="text" th:field="*{heightLimit}" name="heightLimit" id="heightLimit"/></td>
+                </tr>
 
-            <tr>
-                <td><label for="activityPrice">Pris</label></td>
-                <td><input type="text" th:field="*{price}" name="activityPrice" id="activityPrice"/></td>
-            </tr>
-        </form>
-    </table>
-    <button type="submit" form="form" class="btn yellow-button" value="Opdater">Opdater</button>
+                <tr>
+                    <td><label for="activityPrice">Pris</label></td>
+                    <td><input type="text" th:field="*{price}" name="activityPrice" id="activityPrice"/></td>
+                </tr>
+            </form>
+        </table>
+        <button type="submit" form="form" class="btn green-button" value="Opdater">Opdater</button>
+    </div>
+
 
 </body>
 </html>

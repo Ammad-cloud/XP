@@ -8,22 +8,26 @@
 </head>
 <body>
 <div class="navbar" th:fragment="navbar">
-    <a class="dropdown-item" href="/home">Hjem</a>
-    <div class="dropdown">
+    <div>
+        <a href="/home">
+            <img src="/../adventurelogo2.jpeg" height="40" width="125" style="float:right">
+        </a>
+    </div>
+    <div style="margin-top:12px" class="dropdown">
         <a class="dropbtn" href="/indexActivity" >Aktiviteter</a>
         <div class="dropdown-content">
             <a href="/indexActivity">Se alle aktiviteter</a>
             <a href="/createActivity">Opret en aktivitet</a>
         </div>
     </div>
-    <div class="dropdown">
+    <div style="margin-top:12px" class="dropdown">
         <a class="dropbtn" href="#">Reservationer</a>
         <div class="dropdown-content">
             <a href="/reservations/list">Se alle reservationer</a>
             <a href="/reservations/create">Opret en reservation</a>
         </div>
     </div>
-    <div class="dropdown">
+    <div style="margin-top:12px" class="dropdown">
         <a class="dropbtn" href="#">Udstyr</a>
         <div class="dropdown-content">
             <a href="/equipment/list">Se alt udstyr</a>
