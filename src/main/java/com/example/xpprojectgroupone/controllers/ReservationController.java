@@ -49,13 +49,14 @@ public class ReservationController {
         reservation.setDate(date.replace(" ", "T").substring(0, date.length() - 3));
         model.addAttribute("reservation", reservation);
         model.addAttribute("activities", ar.readAll());
+        model.addAttribute("equipment", er.readAll());
         return "reservation/edit-reservation";
     }
 
     @PostMapping("/update")
     public String update(@ModelAttribute Reservation reservation){
         rr.edit(reservation);
-        return "redirect:display-reservations";
+        return "redirect:/reservations/list";
     }
 
     @PostMapping("/delete/{id}")

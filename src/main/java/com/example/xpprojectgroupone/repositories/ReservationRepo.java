@@ -77,6 +77,7 @@ public class ReservationRepo {
             ps.setInt(7, reservation.getId());
             ps.executeUpdate();
         }catch(SQLException e){
+            e.printStackTrace();
             if(e instanceof SQLIntegrityConstraintViolationException){
                 throw new NullPointerException("Editing failed, try again.");
             }

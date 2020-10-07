@@ -24,9 +24,9 @@ public class Reservation {
         this.date = date;
         this.customerPhoneNumber = customerPhoneNumber;
         this.activityId = activityId;
-        this.participants = participants;
         this.equipmentId = equipmentID;
         this.equipmentAmount = equipmentAmount;
+        this.participants = participants;
     }
 
     public int getId() {
