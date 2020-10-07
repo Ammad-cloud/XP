@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Redigér Instruktør</title>
+  <link rel="stylesheet" href="/../stylesheet.css" type="text/css">
+  <form action="index.html" method="get">
+  </form>
+  </div>
+</head>
+<body class="backgroundColor">
+<div th:replace="fragments/navbar :: navbar"></div>
+<div>
+  <img style="float: right"  src="/../adventurelogo2.jpeg" width="250" height="100" alt="Billedet er ikke vist">
+</div>
+<div style="margin-left:10px">
+  <h1>Redigér aktivitet</h1>
+  <table>
+    <form action="/updatedEmployee" id="form" th:action="@{/updatedEmployee}" th:object="${employee}" method="post">
+
+      <input type="hidden" th:field="*{id}" id="employeeId"/>
+
+      <tr>
+        <td><label for="employeeFirstName">Fornavn</label></td>
+        <td><input type="text" th:field="*{firstName}" name="firstName" id="employeeFirstName"/></td>
+      </tr>
+      <tr>
+        <td><label for="employeeLastName">Efternavn</label></td>
+        <td><input type="text" th:field="*{lastName}" name="lastName" id="employeeLastName"/></td>
+      </tr>
+
+
+    </form>
+  </table>
+  <button type="submit" form="form" class="btn green-button" value="Opdater">Opdater</button>
+</div>
+
+
+</body>
+</html>
