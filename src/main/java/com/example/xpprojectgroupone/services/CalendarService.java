@@ -10,14 +10,14 @@ import java.util.Date;
 public class CalendarService {
 
     ReservationRepo reservationRepo;
-    public CalendarReservation calendarReservation;
+    CalendarReservation calendarReservation;
 
 
     public CalendarService(){
 
         reservationRepo = new ReservationRepo();
         calendarReservation = new CalendarReservation();
-        inputReservation();
+        //inputReservation();
     }
 
 
@@ -30,5 +30,15 @@ public class CalendarService {
 
         }
     }
+
+    public ReservationRepo getReservationRepo() {
+        return reservationRepo;
+    }
+
+    public CalendarReservation getCalendarReservation() {
+        return calendarReservation;
+    }
+
+
 
 }

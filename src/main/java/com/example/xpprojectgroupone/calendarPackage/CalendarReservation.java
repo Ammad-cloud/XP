@@ -14,7 +14,13 @@ public class CalendarReservation {
     int startDayOfMonth = 5;
     int spaces = startDayOfMonth;
 
+
+
     private ArrayList<DateCalendar> calendarList = new ArrayList<>();
+
+    public ArrayList<DateCalendar> getCalendarList() {
+        return calendarList;
+    }
 
     String[] months = {
             "",
@@ -56,6 +62,18 @@ public class CalendarReservation {
             }
         }
 
+    }
+
+    public ArrayList<DateCalendar> returnMonth(int index){
+        ArrayList<DateCalendar> returnList = new ArrayList<>();
+        for (DateCalendar returnDate:
+             calendarList) {
+            if(returnDate.getMonth() == index){
+                returnList.add(returnDate);
+            }
+        }
+
+        return returnList;
     }
 
     public void timeStampTest(){
