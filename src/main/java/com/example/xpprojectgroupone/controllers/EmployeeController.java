@@ -46,7 +46,7 @@ public class EmployeeController {
     }
 
     @PostMapping("updatedEmployee")
-    public String updatedEmployee(@ModelAttribute("employee") Employee employee){
+    public String updateEmployee(@ModelAttribute("employee") Employee employee){
         employeeRepo.update(employee);
         return "redirect:/employeeIndex";
     }
@@ -54,7 +54,7 @@ public class EmployeeController {
     @GetMapping("deleteEmployee")
     public String deleteEmployee(@RequestParam int id){
         employeeRepo.delete(id);
-        return "redirect:/employee/employeeIndex";
+        return "redirect:/employeeIndex";
     }
 
 

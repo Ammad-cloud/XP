@@ -22,9 +22,10 @@ public class EmployeeRepo {
 
     public boolean add(Employee model) {
         try {
-            PreparedStatement addEmployee = conn.prepareStatement("INSERT INTO instructor" + "(firstName, lastName)VALUES" + "(?,?);");
+            PreparedStatement addEmployee = conn.prepareStatement("INSERT INTO instructor" + "(firstName, lastName, activityId)VALUES" + "(?,?,?);");
             addEmployee.setString(1, model.getFirstName());
             addEmployee.setString(2, model.getLastName());
+            addEmployee.setInt(3, model.getActivityId());
 
             addEmployee.executeUpdate();
             return true;
@@ -44,6 +45,7 @@ public class EmployeeRepo {
                 employeeToReturn.setId((rs.getInt(1)));
                 employeeToReturn.setFirstName(rs.getString(2));
                 employeeToReturn.setLastName(rs.getString(3));
+                employeeToReturn.setActivityId(rs.getInt(4));
             }
         } catch (SQLException s) {
             s.printStackTrace();
@@ -61,7 +63,7 @@ public class EmployeeRepo {
                 tempEmployee.setId(rs.getInt(1));
                 tempEmployee.setFirstName(rs.getString(2));
                 tempEmployee.setLastName(rs.getString(3));
-//                tempEmployee.setActivityId(rs.getInt(4)); Spørg kristian <---------------
+                tempEmployee.setActivityId(rs.getInt(4));
                 allEmployees.add(tempEmployee);
             }
         } catch (SQLException e) {
@@ -72,10 +74,11 @@ public class EmployeeRepo {
 
     public boolean update(Employee employee) {
         try {
-            PreparedStatement myStmt = conn.prepareStatement("UPDATE instructor SET firstName = ?, lastName = ?" +
+            PreparedStatement myStmt = conn.prepareStatement("UPDATE instructor SET firstName = ?, lastName = ?, activityId = ? " +
                     "WHERE id =" + employee.getId());
             myStmt.setString(1, employee.getFirstName());
             myStmt.setString(2, employee.getLastName());
+            myStmt.setInt(3, employee.getActivityId());
 
             System.out.println(myStmt);
             myStmt.executeUpdate();

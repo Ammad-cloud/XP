@@ -5,19 +5,17 @@ public class Employee {
     private int id;
     private String firstName;
     private String lastName;
-
-    //AktivitetsID
-    //private int activityId;
+    private int activityId;
 
     public Employee(){
     }
 
-    public Employee(int id, String firstName, String lastName) {
+    public Employee(int id, String firstName, String lastName, int activityId) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.activityId = activityId;
     }
-
 
     @Override
     public String toString() {
@@ -25,6 +23,7 @@ public class Employee {
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
+                ", activityId=" + activityId +
                 '}';
     }
 
@@ -50,5 +49,13 @@ public class Employee {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public int getActivityId() {
+        return activityId;
+    }
+
+    public void setActivityId(int activityId) {
+        this.activityId = activityId;
     }
 }
