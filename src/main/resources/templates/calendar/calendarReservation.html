@@ -3,9 +3,14 @@
 <head>
     <link rel = stylesheet href="/../stylesheet.css" type="text/css">
     <meta charset="UTF-8">
-    <!--<img style="float: left" src="/adventurelogo2.jpeg" width="500" height="200" alt="Billedet er ikke vist" >-->
+    <title>Kalender</title>
 </head>
 <body class="backgroundColor">
+<div th:replace="fragments/navbar :: navbar"></div>
+<div>
+    <img style="float: right"  src="/../adventurelogo2.jpeg" width="250" height="100" alt="Billedet er ikke vist">
+</div>
+<h1 style="margin-left: 40px">Kalender</h1>
 
 <!--<div>
     <td>Januar</td>
@@ -15,8 +20,11 @@
         <td>
     </tr>
 </div> -->
-<div>
+<div style="margin-left:40px; margin-top: 50px">
+
     <td>Month</td>
+    <br>
+    <br>
     <br>
 
     <tr th:each = "date: ${month}">
@@ -40,10 +48,10 @@
     </tr>
 </div>
 <form action="/calendar/calendarReservation" method="post">
-    <table>
-        <td>
+    <table style="position:absolute; margin:0; top:170px; left:47%;">
+        <td >
             <tr>
-                <select name="id">
+                <select class="container dropbtn" name="id" id="id" style="position:absolute; margin:0; top:140px; left:42%;">
                     <option value="1">Januar</option>
                     <option value="2">Februar</option>
                     <option value="3">Marts</option>
@@ -64,6 +72,9 @@
         </tr>
     </table>
 </form>
+<script type="text/javascript">
+    document.getElementById('id').value = "<?php echo $_GET['id'];?>";
+</script>
 <!--<div>
     <td>Marts</td>
     <tr th:each = "date: ${march}">

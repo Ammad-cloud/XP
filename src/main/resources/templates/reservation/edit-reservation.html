@@ -6,68 +6,73 @@
     <link rel = stylesheet href="/../stylesheet.css" type="text/css">
 </head>
 <body class="backgroundColor">
-<img style="float: right" src="/adventurelogo2.jpeg" width="500" height="200" alt="Billedet er ikke vist">
 <div th:replace="fragments/navbar :: navbar"></div>
-<form action="/reservations/update" method="post">
-    <table>
-        <tr>
-            <td><label>Startdato:</label></td>
-            <td><input type="datetime-local" th:value="${reservation.startDate}" name="startDate"></td>
-        </tr>
-        <tr>
-            <td><label>Slutdato:</label></td>
-            <td><input type="datetime-local" th:value="${reservation.endDate}" name="endDate"></td>
-        </tr>
-        <tr>
-            <td><label>Kundetelefonnummer:</label></td>
-            <td><input type="number" th:field="${reservation.customerPhoneNumber}" ></td>
-        </tr>
-        <tr>
-            <td><label>Aktivitet:</label></td>
-            <td>
-                <select name="activityId">
-                    <option th:each = "act :${activities}"
-                            th:text="${act.name}"
-                            th:value="${act.id}"
-                            th:selected="${act.id == reservation.activityId}">
-                    </option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td>Instruktør:</td>
-            <td>
-                <select name="instructorId">
-                    <option th:each="instructor :${instructors}"
-                            th:text="${instructor.firstName} + ' ' + ${instructor.lastName}"
-                            th:value="${instructor.id}"
-                            th:selected="${instructor.id == reservation.instructorId}">
-                    </option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td><label>Ekstraudstyr:</label></td>
-            <td>
-                <select name="equipmentId">
-                    <option th:each="equipment :${equipment}"
-                            th:text="${equipment.type}"
-                            th:value="${equipment.id}"
-                            th:selected="${reservation.equipmentId == equipment.id}">
-                    </option>
-                </select>
-            </td>
-            <td><input type="number" th:field="${reservation.equipmentAmount}"></td>
-        </tr>
-        <tr>
-            <td><label>Deltagere:</label></td>
-            <td><input type="number" th:field="${reservation.participants}"></td>
-        </tr>
-        <tr>
-            <td><button type="submit">Gem ændringer</button></td>
-        </tr>
-    </table>
-    <input type="hidden" th:field="${reservation.id}">
-</form>
+<div>
+    <img style="float: right" src="/adventurelogo2.jpeg" width="250" height="100" alt="Billedet er ikke vist">
+</div>
+<div style="margin-left:10px">
+    <h1>Redigér reservation</h1>
+    <form action="/reservations/update" method="post">
+        <table>
+            <tr>
+                <td><label>Startdato:</label></td>
+                <td><input type="datetime-local" th:value="${reservation.startDate}" name="startDate"></td>
+            </tr>
+            <tr>
+                <td><label>Slutdato:</label></td>
+                <td><input type="datetime-local" th:value="${reservation.endDate}" name="endDate"></td>
+            </tr>
+            <tr>
+                <td><label>Kundetelefonnummer:</label></td>
+                <td><input type="number" th:field="${reservation.customerPhoneNumber}" ></td>
+            </tr>
+            <tr>
+                <td><label>Aktivitet:</label></td>
+                <td>
+                    <select name="activityId">
+                        <option th:each = "act :${activities}"
+                                th:text="${act.name}"
+                                th:value="${act.id}"
+                                th:selected="${act.id == reservation.activityId}">
+                        </option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Instruktør:</td>
+                <td>
+                    <select name="instructorId">
+                        <option th:each="instructor :${instructors}"
+                                th:text="${instructor.firstName} + ' ' + ${instructor.lastName}"
+                                th:value="${instructor.id}"
+                                th:selected="${instructor.id == reservation.instructorId}">
+                        </option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label>Ekstraudstyr:</label></td>
+                <td>
+                    <select name="equipmentId">
+                        <option th:each="equipment :${equipment}"
+                                th:text="${equipment.type}"
+                                th:value="${equipment.id}"
+                                th:selected="${reservation.equipmentId == equipment.id}">
+                        </option>
+                    </select>
+                </td>
+                <td><input type="number" th:field="${reservation.equipmentAmount}"></td>
+            </tr>
+            <tr>
+                <td><label>Deltagere:</label></td>
+                <td><input type="number" th:field="${reservation.participants}"></td>
+            </tr>
+            <tr>
+                <td><button type="submit">Gem ændringer</button></td>
+            </tr>
+        </table>
+        <input type="hidden" th:field="${reservation.id}">
+    </form>
+</div>
 </body>
 </html>
