@@ -7,8 +7,9 @@
 </head>
 <body class="backgroundColor">
 
-<img style="float: right" src="/adventurelogo2.jpeg" width="500" height="200" alt="Billedet er ikke vist" ></head>
+<img style="float: right" src="/adventurelogo2.jpeg" width="500" height="200" alt="Billedet er ikke vist" >
 <div th:replace="fragments/navbar :: navbar"></div>
+<a th:href="@{/home/shop}"><button class="btn-ed">Shop</button></a>
 <br>
 <br>
     <div style="display: flex; align-items: center; justify-content: center; padding-top: 200px; margin-left: 500px">
@@ -35,6 +36,10 @@
             <p>-</p>
             <p>-</p>
         </div>
+
+
     </div>
+
+
 </body>
 </html>

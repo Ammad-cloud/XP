@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel = stylesheet href="/../stylesheet.css" type="text/css">
+    <meta charset="UTF-8">
+    <title>Tilkøb</title>
+</head>
+
+<body class="backgroundColor">
+
+<img style="float: right" src="/adventurelogo2.jpeg" width="500" height="200" alt="Billedet er ikke vist" >
+<div th:replace="fragments/navbar :: navbar"></div>
+
+<a th:href="@{/}"><button class="btn-ed">Home</button></a>
+
+
+
+<div th:align="center">
+
+    <h1>Tilkøb</h1>
+
+    <form action="/home/shop" method="post">
+    <table>
+        <tr>
+            <td><label>Sodavand</label></td>
+            <td><input type="number" name="sodaPrice"></td>
+        </tr>
+        <tr>
+            <td><label>Haribo</label></td>
+            <td><input type="number" name="hariboPrice"></td>
+        </tr>
+        <tr>
+            <td><label>T-shirt</label></td>
+            <td><input type="number" name="tshirtPrice"></td>
+        </tr>
+        <tr>
+            <td><button type="submit">Tilføj til kurv</button></td>
+        </tr>
+        <tr>
+            <td><label>Total pris: </label></td>
+            <td th:text="${totalprice}"/>
+        </tr>
+    </table>
+
+
+
+    </form>
+</div>
+
+
+
+</body>
+</html>
+

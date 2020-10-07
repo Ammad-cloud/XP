@@ -10,23 +10,22 @@
 
 <body class="backgroundColor">
 
-<img style="float: right" src="/adventure_alley_logo.jpeg" alt="Billedet er ikke vist">
+<img style="float: right" src="/adventurelogo2.jpeg" width="500" height="200" alt="Billedet er ikke vist" >
+<div th:replace="fragments/navbar :: navbar"></div>
 
-    <a th:href="@{/}"><button class="btn-ed">Home</button></a>
-    <a th:href="@{/equipment/create}"><button class="btn-ed">Add new gokart</button></a>
+<div align="center">
 
-    <div align="center">
+    <table >
         <header>
             <h1>Gokarts</h1>
             <p>true = Available</p>
             <p>false = Unavailable</p>
         </header>
-    </div>
 
 
-<div>
 
-    <table align="center">
+
+
         <tr th:each="equipment : ${viewEquipment}">
             <td th:text="${equipment.id}"></td>
             <td th:text="${equipment.type}"></td>
@@ -39,8 +38,8 @@
         </tr>
     </table>
 
-</div>
 
+</div>
 
 </body>
 </html>
