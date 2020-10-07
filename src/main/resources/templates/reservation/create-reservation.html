@@ -12,11 +12,11 @@
     <table>
         <tr>
             <td><label>Dato:</label></td>
-            <td><input type="datetime-local" th:field="${reservation.date}"></td>
+            <td><input type="datetime-local" name="date" th:value="${reservation.date}"></td>
         </tr>
         <tr>
             <td><label>Kundens telefonnummer:</label></td>
-            <td><input type="number" th:field="${reservation.customerPhoneNumber}"></td>
+            <td><input type="number" name="customerPhoneNumber" th:value="${reservation.customerPhoneNumber}"></td>
         </tr>
         <tr>
             <td><label>Aktivitet:</label></td>

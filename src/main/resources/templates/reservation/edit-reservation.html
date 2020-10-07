@@ -12,8 +12,25 @@
     <table>
         <tr>
             <td><label>Dato</label></td>
-            <td><input type="datetime-local" th:field="reservation.date"></td>
+            <td><input type="datetime-local" th:value="${reservation.date}" name="date"></td>
         </tr>
+        <tr>
+            <td><label>Kundetelefonnummer</label></td>
+            <td><input type="number" th:field="${reservation.customerPhoneNumber}" ></td>
+        </tr>
+        <tr>
+            <td><label>Aktivitet</label></td>
+            <td>
+                <select name="activityId">
+                    <option th:each = "act :${activities}"
+                            th:text="${act.name}"
+                            th:value="${act.id}"
+                            th:selected="${act.id == reservation.activityId}">
+                    </option>
+                </select>
+            </td>
+        </tr>
+
     </table>
 </form>
 </body>

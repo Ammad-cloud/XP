@@ -64,14 +64,17 @@ public class ReservationRepo {
     }
 
     // NOT WORKING/TESTED
-    public void editReservation(Reservation reservation) {
-        String sql = "UPDATE booking SET customerPhoneNumber = ?, activityId = ?, equipemntId = ?, instructorId = ?, participants = ? WHERE id=?";
+    public void edit(Reservation reservation) {
+        String sql = "UPDATE Booking SET date = ?, customerPhoneNumber = ?, activityId = ?, equipmentId = ?, equipmentAmount = ?, participants = ? WHERE id = ?";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setInt(1, reservation.getCustomerPhoneNumber());
-            ps.setInt(2, reservation.getActivityId());
-            ps.setInt(5, reservation.getParticipants());
-            ps.setInt(6, reservation.getId());
+            ps.setString(1, reservation.getDate().replace("T", " "));
+            ps.setInt(2, reservation.getCustomerPhoneNumber());
+            ps.setInt(3, reservation.getActivityId());
+            ps.setInt(4, reservation.getEquipmentId());
+            ps.setInt(5, reservation.getEquipmentAmount());
+            ps.setInt(6, reservation.getParticipants());
+            ps.setInt(7, reservation.getId());
             ps.executeUpdate();
         }catch(SQLException e){
             if(e instanceof SQLIntegrityConstraintViolationException){
@@ -82,7 +85,7 @@ public class ReservationRepo {
 
     // NOT WORKING/TESTED
     public void deleteReservation(Reservation reservation) {
-        String sql = "DELETE FROM booking WHERE id = ?";
+        String sql = "DELETE FROM Booking WHERE id = ?";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, reservation.getId());
@@ -92,5 +95,27 @@ public class ReservationRepo {
                 System.out.println(e);
             }
         }
+    }
+
+    public Reservation findById(int id) {
+        Reservation reservation = new Reservation();
+        String sql = "SELECT * FROM Booking WHERE id = ?";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()) {
+                reservation.setId(rs.getInt("id"));
+                reservation.setDate(rs.getString("date"));
+                reservation.setCustomerPhoneNumber(rs.getInt("customerPhoneNumber"));
+                reservation.setActivityId(rs.getInt("activityId"));
+                reservation.setEquipmentId(rs.getInt("equipmentId"));
+                reservation.setEquipmentAmount(rs.getInt("equipmentAmount"));
+                reservation.setParticipants(rs.getInt("participants"));
+            }
+        } catch(SQLException e) {
+            System.out.println(e);
+        }
+        return reservation;
     }
 }
