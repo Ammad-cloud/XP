@@ -3,27 +3,68 @@
 <head>
     <link rel = stylesheet href="/../stylesheet.css" type="text/css">
     <meta charset="UTF-8">
-    <img style="float: left" src="/adventurelogo2.jpeg" width="500" height="200" alt="Billedet er ikke vist" >
+    <!--<img style="float: left" src="/adventurelogo2.jpeg" width="500" height="200" alt="Billedet er ikke vist" >-->
 </head>
 <body class="backgroundColor">
 
-<div>
+<!--<div>
     <td>Januar</td>
     <tr th:each = "date: ${january}">
         <td th:text="${date.getDay()}"/>
 
         <td>
     </tr>
-</div>
+</div> -->
 <div>
-    <td>Februar</td>
-    <tr th:each = "date: ${february}">
-        <td th:text="${date.getDay()}"/>
+    <td>Month</td>
+    <br>
 
-        <td>
+    <tr th:each = "date: ${month}">
+        <div style="width:225px; height:150px; border: 3px solid black; float:left;">
+            <table>
+                <tr>
+                    <td th:text="${date.getDay()}"></td>
+                </tr>
+                <tr>
+                    <td th:text ="${date.getReservation() != null} ? ${date.getReservation().getActivityName()}">
+                </tr>
+                <tr>
+                    <td th:text ="${date.getReservation() != null} ? ${date.getReservation().getInstructorName()}">
+                </tr>
+                <tr>
+                    <td th:text="${date.getReservation() != null} ? ${date.getReservation().getStartTime()} + ' - ' + ${date.getReservation().getEndTime()}"></td>
+                </tr>
+            </table>
+
+        </div>
     </tr>
 </div>
-<div>
+<form action="/calendar/calendarReservation" method="post">
+    <table>
+        <td>
+            <tr>
+                <select name="id">
+                    <option value="1">Januar</option>
+                    <option value="2">Februar</option>
+                    <option value="3">Marts</option>
+                    <option value="4">April</option>
+                    <option value="5">Maj</option>
+                    <option value="6">Juni</option>
+                    <option value="7">Juli</option>
+                    <option value="8">August</option>
+                    <option value="9">September</option>
+                    <option value="10">Oktober</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
+                </select>
+            </tr>
+        </td>
+        <tr>
+            <td><button type="submit">Vælg måned</button></td>
+        </tr>
+    </table>
+</form>
+<!--<div>
     <td>Marts</td>
     <tr th:each = "date: ${march}">
         <td th:text="${date.getDay()}"/>
@@ -102,7 +143,7 @@
 
         <td>
     </tr>
-</div>
+</div> -->
 
 
 

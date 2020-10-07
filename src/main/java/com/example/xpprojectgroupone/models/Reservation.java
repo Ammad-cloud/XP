@@ -125,4 +125,12 @@ public class Reservation {
     public int getDay(){
         return Integer.parseInt(this.startDate.substring(8, 10));
     }
+
+    public String getStartTime(){
+        return this.startDate.substring(11, 16);
+    }
+
+    public String getEndTime(){
+        return this.endDate.substring(11, 16);
+    }
 }
