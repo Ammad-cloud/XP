@@ -42,14 +42,19 @@ public class ReservationController {
         return "redirect:/reservations/list";
     }
 
-    @GetMapping("/edit/{id}")
-    public String edit(@PathVariable("id") int id){
+    @PostMapping("/edit")
+    public String edit(@RequestParam int id, Model model){
+        Reservation reservation = rr.findById(id);
+        String date = reservation.getDate();
+        reservation.setDate(date.replace(" ", "T").substring(0, date.length() - 3));
+        model.addAttribute("reservation", reservation);
+        model.addAttribute("activities", ar.readAll());
         return "reservation/edit-reservation";
     }
 
     @PostMapping("/update")
     public String update(@ModelAttribute Reservation reservation){
-        //rp.edit(reservation);
+        rr.edit(reservation);
         return "redirect:display-reservations";
     }
 
