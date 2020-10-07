@@ -39,45 +39,14 @@ import java.util.ArrayList;
         public String addTilkob(@RequestParam int sodaPrice, @RequestParam int hariboPrice, @RequestParam int tshirtPrice,  Model model) {
 
 
-            System.out.println("Sodavand" + sodaPrice + " " + "Haribo" + hariboPrice + " " + "T-shirt" + tshirtPrice);
+
             int totalPrice = (sodaPrice * 20) + (hariboPrice * 20) + (tshirtPrice * 129);
             model.addAttribute("totalprice", totalPrice);
-            System.out.println(totalPrice);
+            System.out.println(totalPrice + "kr");
 
 
-            /*
-            items.add(tilkobFromPost);
-            tilkobFromPost.getTotalPrice();
-            modelView.addAttribute("tilkob", items);*/
             return "/home/shop";
         }
-/*
-        @PostMapping("/addItem")
-        public String addTilkob(Tilkob tilkob, Model modelView) {
-
-            modelView.addAttribute("tilkob", items);
-            return "redirect:/home/shop";
-        }
-
-*/
-
-
-
-    /*@GetMapping("/home/shop")
-    public String tilkob(Model model){
-        addItem();
-        model.addAttribute("tilkob", items);
-        System.out.println(items.toString());
-        return "/home/shop";
-    }
-
-        @PostMapping("/home/shop")
-        public String addUser(Tilkob tilkob) {
-            //items.add(tilkob);
-            //System.out.println(items.);
-
-            return "redirect:/home/shop";
-        }*/
     }
 
 

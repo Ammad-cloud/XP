@@ -23,7 +23,7 @@
     <table>
         <tr>
             <td><label>Sodavand</label></td>
-            <td><input type="number" name="sodaPrice"></td>
+            <td><input type="number" name="sodaPrice" ></td>
         </tr>
         <tr>
             <td><label>Haribo</label></td>
@@ -38,7 +38,7 @@
         </tr>
         <tr>
             <td><label>Total pris: </label></td>
-            <td th:text="${totalprice}"/>
+            <td th:text="${totalprice + ' kr'}"></td>
         </tr>
     </table>
 
