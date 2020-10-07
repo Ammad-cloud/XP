@@ -23,7 +23,7 @@ public class CalendarService {
 
 
     public void inputReservation(){
-        ArrayList<Reservation> reserv = reservationRepo.getAllReservations();
+        ArrayList<Reservation> reserv = reservationRepo.fetchAll();
         for (Reservation res:
              reserv) {
             calendarReservation.inputReservation(res);

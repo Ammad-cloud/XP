@@ -92,4 +92,12 @@ public class Reservation {
     public void setEquipmentAmount(int equipmentAmount) {
         this.equipmentAmount = equipmentAmount;
     }
+
+    public int getMonth(){
+        return Integer.parseInt(this.date.substring(5, 7));
+    }
+
+    public int getDay(){
+        return Integer.parseInt(this.date.substring(8, 10));
+    }
 }

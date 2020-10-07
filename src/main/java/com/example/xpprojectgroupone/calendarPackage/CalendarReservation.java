@@ -55,8 +55,8 @@ public class CalendarReservation {
 
     public void inputReservation(Reservation res){
         for (DateCalendar date : calendarList) {
-            if(date.getMonth() == res.getDate().getMonth()){
-                if(date.getDay() == res.getDate().getDay()){
+            if(date.getMonth() == res.getMonth()){
+                if(date.getDay() == res.getDay()){
                     date.setReservation(res);
                 }
             }
