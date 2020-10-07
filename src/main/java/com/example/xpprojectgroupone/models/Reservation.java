@@ -1,32 +1,33 @@
 package com.example.xpprojectgroupone.models;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
-import java.time.LocalDateTime;
-import java.util.Date;
-
 public class Reservation {
     private int id;
     //@DateTimeFormat(pattern = "yyyy-MM-dd-HH-mm")
-    private String date;
+    private String startDate;
+    private String endDate;
     private int customerPhoneNumber;
     private int activityId;
-    private String activityName; // Used for listing reservation
-    private int participants;
+    private int instructorId;
     private int equipmentId;
     private int equipmentAmount;
+    private int participants;
+
+    private String activityName; // Used for listing reservation
+    private String instructorName; // Used for listing reservation
 
     public Reservation() {
     }
 
-    public Reservation(int id, String date, int customerPhoneNumber, int activityId, int equipmentID, int equipmentAmount, int participants) {
+    public Reservation(int id, String startDate, String endDate, int customerPhoneNumber, int activityId, int instructorId, int equipmentID, int equipmentAmount, int participants) {
         this.id = id;
-        this.date = date;
+        this.startDate = startDate;
+        this.endDate = endDate;
         this.customerPhoneNumber = customerPhoneNumber;
         this.activityId = activityId;
-        this.participants = participants;
+        this.instructorId = instructorId;
         this.equipmentId = equipmentID;
         this.equipmentAmount = equipmentAmount;
+        this.participants = participants;
     }
 
     public int getId() {
@@ -37,12 +38,20 @@ public class Reservation {
         this.id = id;
     }
 
-    public String getDate() {
-        return date;
+    public String getStartDate() {
+        return startDate;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
     }
 
     public int getCustomerPhoneNumber() {
@@ -61,6 +70,14 @@ public class Reservation {
         this.activityId = activityId;
     }
 
+    public int getInstructorId() {
+        return instructorId;
+    }
+
+    public void setInstructorId(int instructorId) {
+        this.instructorId = instructorId;
+    }
+
     public int getParticipants() {
         return participants;
     }
@@ -77,6 +94,14 @@ public class Reservation {
         this.activityName = activityName;
     }
 
+    public String getInstructorName() {
+        return instructorName;
+    }
+
+    public void setInstructorName(String instructorName) {
+        this.instructorName = instructorName;
+    }
+
     public int getEquipmentId() {
         return equipmentId;
     }
@@ -91,5 +116,21 @@ public class Reservation {
 
     public void setEquipmentAmount(int equipmentAmount) {
         this.equipmentAmount = equipmentAmount;
+    }
+
+    public int getMonth(){
+        return Integer.parseInt(this.startDate.substring(5, 7));
+    }
+
+    public int getDay(){
+        return Integer.parseInt(this.startDate.substring(8, 10));
+    }
+
+    public String getStartTime(){
+        return this.startDate.substring(11, 16);
+    }
+
+    public String getEndTime(){
+        return this.endDate.substring(11, 16);
     }
 }

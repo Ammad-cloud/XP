@@ -22,14 +22,15 @@ public class CalendarService {
 
 
 
-    public void inputReservation(){
-        ArrayList<Reservation> reserv = reservationRepo.getAllReservations();
+   /* public void inputReservation(){
+        ArrayList<Reservation> reserv = reservationRepo.fetchAll();
         for (Reservation res:
              reserv) {
-            calendarReservation.inputReservation(res);
+           // calendarReservation.inputReservation(res);
 
         }
-    }
+    }*/
+
 
     public ReservationRepo getReservationRepo() {
         return reservationRepo;

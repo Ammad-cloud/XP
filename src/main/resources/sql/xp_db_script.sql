@@ -72,13 +72,14 @@ DROP TABLE IF EXISTS Booking;
 create table Booking
 (
 	id int auto_increment,
-	date DATETIME not null,
+	startDate DATETIME not null,
+    endDate DATETIME NOT NULL,
 	customerPhoneNumber int not null,
 	activityId int not null,
+	instructorId int not null,
     equipmentId int not null,
     equipmentAmount INT NOT NULL,
 	participants int not null,
-	#instructorId int not null,
 	primary key (id),
 	foreign key (activityId) references Activity(id)
     #foreign key (instructorId) references Instructor(id),
