@@ -1,10 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Edit Reservation</title>
+    <title>Redigér reservation</title>
+    <link rel = stylesheet href="/../stylesheet.css" type="text/css">
 </head>
-<body>
-
+<body class="backgroundColor">
+<img style="float: right" src="/adventurelogo2.jpeg" width="500" height="200" alt="Billedet er ikke vist">
+<div th:replace="fragments/navbar :: navbar"></div>
+<form action="/reservations/update">
+    <table>
+        <tr>
+            <td><label>Dato</label></td>
+            <td><input type="datetime-local" th:field="reservation.date"></td>
+        </tr>
+    </table>
+</form>
 </body>
 </html>

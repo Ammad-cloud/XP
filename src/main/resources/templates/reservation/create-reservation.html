@@ -12,7 +12,7 @@
     <table>
         <tr>
             <td><label>Dato:</label></td>
-            <td><input type="date" th:field="${reservation.date}"></td>
+            <td><input type="datetime-local" th:field="${reservation.date}"></td>
         </tr>
         <tr>
             <td><label>Kundens telefonnummer:</label></td>
@@ -24,6 +24,17 @@
                 <select name="activityId">
                     <option th:each = "act: ${activities}" th:text="${act.name}" th:value="${act.id}"></option>
                 </select>
+            </td>
+        </tr>
+        <tr>
+            <td><label>Ekstraudstyr:</label></td>
+            <td>
+                <select name="equipmentId">
+                    <option th:each = "equipment: ${equipment}" th:text="${equipment.type}" th:value="${equipment.id}"></option>
+                </select>
+            </td>
+            <td>
+                <input type="number" th:field="${reservation.equipmentId}">
             </td>
         </tr>
         <tr>

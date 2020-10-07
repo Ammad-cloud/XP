@@ -33,6 +33,7 @@ public class ReservationController {
         model.addAttribute("reservation", new Reservation());
         model.addAttribute("activities", ar.readAll());
         model.addAttribute("equipment", er.readAll());
+        System.out.println(er.readAll().size());
         return "reservation/create-reservation";
     }
 

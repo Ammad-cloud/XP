@@ -75,8 +75,9 @@ create table Booking
 	date DATETIME not null,
 	customerPhoneNumber int not null,
 	activityId int not null,
+    equipmentId int not null,
+    equipmentAmount INT NOT NULL,
 	participants int not null,
-    #equipmentId int not null,
 	#instructorId int not null,
 	primary key (id),
 	foreign key (activityId) references Activity(id)
