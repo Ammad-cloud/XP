@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Opret Instruktør</title>
+    <link rel="stylesheet" href="/../stylesheet.css" type="text/css">
+    <form action="index.html" method="get">
+    </form>
+</head>
+<body class="backgroundColor">
+<div th:replace="fragments/navbar :: navbar"></div>
+<div>
+    <img style="float: right"  src="/../adventurelogo2.jpeg" width="250" height="100" alt="Billedet er ikke vist">
+</div>
+<div style="margin-left:10px">
+    <h1>Opret instruktør</h1>
+    <form action="/addEmployee" id="form" th:action="@{/addEmployee}" th:object="${addEmployee}"
+          method="post">
+        <table>
+            <tr>
+                <td><label for="firstName">Fornavn:</label></td>
+                <td><input type="text" th:field="*{firstName}" name="firstName" id="firstName"/></td>
+            </tr>
+            <tr>
+                <td><label for="lastName">Efternavn</label></td>
+                <td><input type="text" th:field="*{lastName}" name="lastName" id="lastName"/></td>
+            </tr>
+            <tr>
+                <td><label for="activityId">Aktivitetsnummer</label>
+                <td><input type="text" th:field="*{activityId}" name="activityId" id="activityId"/></td>
+            </tr>
+        </table>
+    </form>
+    <button  type="submit" class="btn green-button" form="form" value="Opret">Opret</button>
+    <button type="reset" style="margin-left:5px" class="btn red-button" form="form" value="Fortryd">Fortryd</button>
+</div>
+</body>
+</html>

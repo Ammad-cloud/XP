@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--Farven skal ændres på table, så tabellen ikke falder ud i samme farve som baggrunden.-->
+<head>
+    <link rel = stylesheet href="/../stylesheet.css" type="text/css">
+    <meta charset="UTF-8">
+    <title>Intruktørliste</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+
+        input:focus + .slider {
+            box-shadow: 0 0 1px #2196F3;
+        }
+
+        input:checked + .slider:before {
+            -webkit-transform: translateX(26px);
+            -ms-transform: translateX(26px);
+            transform: translateX(26px);
+        }
+
+        /* Rounded sliders */
+        .slider.round {
+            border-radius: 34px;
+        }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body class="backgroundColor">
+<div th:replace="fragments/navbar :: navbar"></div>
+<div>
+    <img style="float: right"  src="/../adventurelogo2.jpeg" width="250" height="100" alt="Billedet er ikke vist">
+</div>
+<h1 style="margin-left: 10px">Instruktører</h1>
+<form action="addEmployee.html" method="get">
+    <button type="Create" class="btn green-button" style="float: left; margin-top: 35px" formaction="/addEmployee">Tilføj Instruktør</button>
+</form>
+<div>
+    <table id="main-table" class="table table-many border table-header-sticky">
+        <thead>
+        <tr>
+            <th class="border-right">ID</th>
+            <th class="border-right">Fornavn</th>
+            <th class="border-right">Efternavn</th>
+            <th class="border-right">Aktivitetsnummer</th>
+            <th class="border-right">Arbejde true/false</th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tr th:each="employee : ${employee}">
+            <td th:text="${employee.getId()}"></td>
+            <td th:text="${employee.getFirstName()}"></td>
+            <td th:text="${employee.getLastName()}"></td>
+            <td th:text="${employee.getActivityId()}"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                <a th:href="@{/updateEmployee(id=${employee.getId()})}"><button style="margin:10px" class="btn blue-button">Redigér</button></a>
+                <a th:href="@{/deleteEmployee(id=${employee.getId()})}"><button style="margin: 10px" class="btn red-button">Slet</button></a>
+            </td>
+
+        </tr>
+    </table>
+</div>
+
+</body>
+</html>
+</html>
