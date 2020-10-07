@@ -11,8 +11,12 @@
 <form action="/reservations/create" method="post">
     <table>
         <tr>
-            <td><label>Dato:</label></td>
-            <td><input type="datetime-local" name="date" th:value="${reservation.date}"></td>
+            <td><label>Startdato:</label></td>
+            <td><input type="datetime-local" name="startDate" th:value="${reservation.startDate}"></td>
+        </tr>
+        <tr>
+            <td><label>Slutdato:</label></td>
+            <td><input type="datetime-local" name="endDate" th:value="${reservation.endDate}"></td>
         </tr>
         <tr>
             <td><label>Kundens telefonnummer:</label></td>
@@ -23,6 +27,17 @@
             <td>
                 <select name="activityId">
                     <option th:each = "act: ${activities}" th:text="${act.name}" th:value="${act.id}"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td><label>Instruktør:</label></td>
+            <td>
+                <select name="instructorId" >
+                    <option th:each="instructor :${instructors}"
+                            th:text="${instructor.firstName} + ' ' + ${instructor.lastName}"
+                            th:value="${instructor.id}">
+                    </option>
                 </select>
             </td>
         </tr>

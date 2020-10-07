@@ -10,16 +10,20 @@
 <div th:replace="fragments/navbar :: navbar"></div>
 <table>
     <thead>
-        <th>Dato</th>
+        <th>Startdato</th>
+        <th>Slutdato</th>
         <th>Kundetelefonnummer</th>
         <th>Aktivitet</th>
+        <th>Instruktør</th>
         <th>Antal deltagere</th>
     </thead>
     <tbody>
         <tr th:each="reservation: ${reservations}">
-            <td th:text="${reservation.date}"></td>
+            <td th:text="${reservation.startDate}"></td>
+            <td th:text="${reservation.endDate}"></td>
             <td th:text="${reservation.customerPhoneNumber}"></td>
             <td th:text="${reservation.activityName}"></td>
+            <td th:text="${reservation.instructorName}"></td>
             <td th:text="${reservation.participants}"></td>
             <td>
                 <form action="/reservations/edit" method="post">
