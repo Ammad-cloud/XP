@@ -1,34 +1,49 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <title>Display Reservations</title>
-    <link rel = stylesheet href="/../stylesheet.css" type="text/css">
-</head>
-<body class="backgroundColor">
-<img style="float: right" src="/adventurelogo2.jpeg" width="500" height="200" alt="Billedet er ikke vist">
-<div th:replace="fragments/navbar :: navbar"></div>
-<table>
-    <thead>
-        <th>Dato</th>
-        <th>Kundetelefonnummer</th>
-        <th>Aktivitet</th>
-        <th>Antal deltagere</th>
-    </thead>
-    <tbody>
-        <tr th:each="reservation: ${reservations}">
-            <td th:text="${reservation.date}"></td>
-            <td th:text="${reservation.customerPhoneNumber}"></td>
-            <td th:text="${reservation.activityName}"></td>
-            <td th:text="${reservation.participants}"></td>
-            <td>
-                <form action="/reservations/edit" method="post">
-                    <input type="hidden" name="id" th:value="${reservation.id}">
-                    <button type="submit">Redigér</button>
-                </form>
-            </td>
-        </tr>
-    </tbody>
-</table>
+        <meta charset="UTF-8">
+        <title>Display Reservations</title>
+        <link rel = stylesheet href="/../stylesheet.css" type="text/css">
+    </head>
+    <body class="backgroundColor">
+    <div th:replace="fragments/navbar :: navbar"></div>
+    <div>
+        <img style="float: right"  src="/../adventurelogo2.jpeg" width="250" height="100" alt="Billedet er ikke vist">
+    </div>
+    <h1 style="margin-left: 10px">Reservationer</h1>
+    <form action="create-reservation.html" method="get">
+        <button type="Create" class="btn green-button" style="float: left; margin-top: 35px" formaction="/reservations/create">Opret reservtion</button>
+    </form>
+    <div>
+    <table id="main-table" class="table table-many border table-header-sticky">
+        <thead>
+            <tr>
+            <th class="border-right">Startdato</th>
+            <th class="border-right">Slutdato</th>
+            <th class="border-right">Kundetelefonnummer</th>
+            <th class="border-right">Aktivitet</th>
+            <th class="border-right">Instruktør</th>
+            <th class="border-right">Antal deltagere</th>
+            <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="reservation: ${reservations}">
+                <td th:text="${reservation.startDate}"></td>
+                <td th:text="${reservation.endDate}"></td>
+                <td th:text="${reservation.customerPhoneNumber}"></td>
+                <td th:text="${reservation.activityName}"></td>
+                <td th:text="${reservation.instructorName}"></td>
+                <td th:text="${reservation.participants}"></td>
+                <td>
+                    <form action="/reservations/edit" method="post">
+                        <input type="hidden" name="id" th:value="${reservation.id}">
+                        <button style="margin:10px" class="btn blue-button" type="submit">Redigér</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
 </body>
 </html>

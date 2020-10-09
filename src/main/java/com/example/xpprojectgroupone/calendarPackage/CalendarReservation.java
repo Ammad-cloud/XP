@@ -53,7 +53,7 @@ public class CalendarReservation {
 
     }
 
-    public void inputReservation(Reservation res){
+  public void addReservation(Reservation res){
         for (DateCalendar date : calendarList) {
             if(date.getMonth() == res.getMonth()){
                 if(date.getDay() == res.getDay()){
