@@ -1,5 +1,5 @@
 /*
-USER STORIE: 13, 14
+USER STORIES: 13, 14
 
 Fungere som et Repository men da kalenderen ikke ligger i databasen trækker den informationer
 fra reservationRepo

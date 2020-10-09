@@ -1,5 +1,5 @@
 /*
-USER STORIE: 13, 14
+USER STORIES: 13, 14
 
 CalendarReservation er et DTO som bruges til at holde styr på en kalender. Den indeholder objekter
 fra  DateCalendar klassen
