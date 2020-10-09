@@ -1,3 +1,11 @@
+/*
+USER STORIE: 13, 14
+
+CalendarReservation er et DTO som bruges til at holde styr på en kalender. Den indeholder objekter
+fra  DateCalendar klassen
+
+
+*/
 package com.example.xpprojectgroupone.calendarPackage;
 
 import com.example.xpprojectgroupone.models.Reservation;
@@ -13,8 +21,6 @@ public class CalendarReservation {
     int year = 2020;
     int startDayOfMonth = 5;
     int spaces = startDayOfMonth;
-
-
 
     private ArrayList<DateCalendar> calendarList = new ArrayList<>();
 
@@ -33,8 +39,6 @@ public class CalendarReservation {
     int[] days = {
             0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31
     };
-
-
 
     public CalendarReservation(){
 
@@ -90,14 +94,6 @@ public class CalendarReservation {
             if(null != dat.getReservation())  {
                 System.out.println(dat.getDay() + " " + dat.getMonth() + " " + dat.getYear());
             }
-
         }
-
-
     }
-
-
-
-
-
 }

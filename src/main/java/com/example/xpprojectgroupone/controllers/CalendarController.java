@@ -1,3 +1,14 @@
+/*
+USER STORIE: 13, 14
+
+Sender kalendar informationer ud til view
+
+
+ */
+
+
+
+
 package com.example.xpprojectgroupone.controllers;
 
 

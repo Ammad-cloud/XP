@@ -1,3 +1,10 @@
+/*
+USER STORIE: 13, 14
+
+Specifikke dage som bliver lagt ind i CalendarReservation objektet
+Hver dag indeholder information om datoen og reservationer på dagen
+
+ */
 package com.example.xpprojectgroupone.calendarPackage;
 
 import com.example.xpprojectgroupone.models.Reservation;

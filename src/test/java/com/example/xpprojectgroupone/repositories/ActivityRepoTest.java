@@ -1,3 +1,13 @@
+/*
+USER STORIES: 1, 8, 2, 3
+
+Unit tests til ActivityRepo klassen
+Testene er skrevet først derefter blev Repo funktionerne skrevet
+
+ */
+
+
+
 package com.example.xpprojectgroupone.repositories;
 
 import com.example.xpprojectgroupone.models.Activity;
@@ -11,6 +21,9 @@ import static org.junit.jupiter.api.Assertions.*;
 class ActivityRepoTest {
 
     ActivityRepo activityRepo = new ActivityRepo();
+
+
+    // Tester om create laver en korrekt activity
 
     @Test
     void create() {
@@ -29,6 +42,8 @@ class ActivityRepoTest {
     void read() {
     }
 
+
+    //Tester om readAll() læser data fra databasen korrekt
     @Test
     void readAll() {
         List<Activity> activitysArray;
@@ -44,6 +59,8 @@ class ActivityRepoTest {
         assertEquals(activitysArray.toString(), testArray.toString());
 
     }
+
+    //Tester om update() også opdatere korrekt
 
     @Test
     void update() {
