@@ -1,6 +1,7 @@
 /*
+USER STORIES: 13, 14
 
-
+Opretter et CalendarService objekt som tester funktionaliter uden at skulle køre hele programmet
 
  */
 
