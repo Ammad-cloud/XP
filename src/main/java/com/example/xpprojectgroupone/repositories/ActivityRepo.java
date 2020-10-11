@@ -16,10 +16,7 @@ import com.example.xpprojectgroupone.models.Activity;
 import com.example.xpprojectgroupone.utilities.DatabaseConnectionManager;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 @Repository
@@ -44,23 +41,27 @@ public class ActivityRepo {
     price double not null,
     constraint Activity_pk
  */
-    public boolean create(Activity model) {
+    // Returns the auto generated ID
+    public int create(Activity model) {
+        String sql = "INSERT INTO Activity" + "(name, description, ageLimit, heightLimit, price)VALUES" + "(?,?,?,?,?);";
         try {
-            PreparedStatement createActivity = conn.prepareStatement("INSERT INTO Activity" + "(name, description, ageLimit, heightLimit, price)VALUES" + "(?,?,?,?,?);");
-            createActivity.setString(1, model.getName());
-            createActivity.setString(2, model.getDescription());
-            createActivity.setInt(3, model.getAgeLimit());
-            createActivity.setInt(4, model.getHeightLimit());
-            createActivity.setDouble(5, model.getPrice());
+            PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, model.getName());
+            ps.setString(2, model.getDescription());
+            ps.setInt(3, model.getAgeLimit());
+            ps.setInt(4, model.getHeightLimit());
+            ps.setDouble(5, model.getPrice());
+            ps.executeUpdate();
 
-
-            createActivity.executeUpdate();
-            return true;
+            // Getting auto generated ID
+            ResultSet rs = ps.getGeneratedKeys();
+            rs.next();
+            return rs.getInt(1);
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return false;
+        return -1;
     }
 
     public Activity read(int id) {
@@ -68,7 +69,10 @@ public class ActivityRepo {
         try {
             PreparedStatement getSingleAccessory = conn.prepareStatement("SELECT * FROM Activity WHERE id=" + id);
             ResultSet rs = getSingleAccessory.executeQuery();
-            while (rs.next()) {
+            // If no result is found, we return null
+            if(!rs.next()){
+                return null;
+            }else{
                 activityToReturn.setId((rs.getInt(1)));
                 activityToReturn.setName(rs.getString(2));
                 activityToReturn.setDescription(rs.getString(3));
@@ -77,6 +81,28 @@ public class ActivityRepo {
                 activityToReturn.setPrice(rs.getInt(6));
             }
         } catch (SQLException s) {
+            s.printStackTrace();
+        }
+        return activityToReturn;
+    }
+
+    public Activity readFromName(String name){
+        Activity activityToReturn = new Activity();
+        String sql = "SELECT * FROM Activity WHERE name = ?";
+        try{
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, name);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                activityToReturn.setId((rs.getInt(1)));
+                activityToReturn.setName(rs.getString(2));
+                activityToReturn.setDescription(rs.getString(3));
+                activityToReturn.setAgeLimit(rs.getInt(4));
+                activityToReturn.setHeightLimit(rs.getInt(5));
+                activityToReturn.setPrice(rs.getInt(6));
+            }
+
+        }catch (SQLException s){
             s.printStackTrace();
         }
         return activityToReturn;
@@ -137,8 +163,6 @@ public class ActivityRepo {
             System.out.println(e.getMessage());
             System.out.println("Fail");
         }
-
-
         return false;
 
     }
