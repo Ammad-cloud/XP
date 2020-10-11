@@ -35,7 +35,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr th:each="reservation: ${reservations}">
+            <tr th:each="reservation: ${reservations}" style="background-color: whitesmoke">
                 <td th:text="${reservation.startDate}"></td>
                 <td th:text="${reservation.endDate}"></td>
                 <td th:text="${reservation.customerPhoneNumber}"></td>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel = stylesheet href="/../stylesheet.css" type="text/css">
+    <meta charset="UTF-8">
+    <title>Kalender</title>
+</head>
+<body class="backgroundColor">
+<div th:replace="fragments/navbar :: navbar"></div>
+<a href="/home">
+    <div>
+        <img href="/home" style="float: right"  src="/../adventurelogo2.jpeg" width="250" height="100" alt="Billedet er ikke vist">
+    </div>
+</a>
+<h1 style="margin-left: 40px">Vagtplan for medarbejdere</h1>
+
+<!--<div>
+    <td>Januar</td>
+    <tr th:each = "date: ${january}">
+        <td th:text="${date.getDay()}"/>
+
+        <td>
+    </tr>
+</div> -->
+<div style="margin-left:50px; margin-top: 100px">
+
+    <br>
+    <br>
+    <br>
+
+    <tr th:each = "date: ${month}">
+        <div style="width:225px; height:100px; border: 2px solid black; float:left;">
+            <table>
+                <tr>
+                    <td th:text="${date.getDay()}"></td>
+                </tr>
+
+                <tr>
+                    <td th:text ="${date.getReservation() != null} ? ${date.getReservation().getInstructorName()}">
+                </tr>
+                <tr>
+                    <td th:text="${date.getReservation() != null} ? ${date.getReservation().getStartTime()} + ' - ' + ${date.getReservation().getEndTime()}"></td>
+                </tr>
+            </table>
+
+        </div>
+    </tr>
+</div>
+<form action="/calendar/calendarEmployee" method="post">
+    <table style="position:absolute; margin:0; top:230px; left:47%;">
+        <td >
+            <tr>
+                <select class="container dropbtn" name="id" id="id" style="position:absolute; margin:0; top:200px; left:42%;">
+                    <option value="1">Januar</option>
+                    <option value="2">Februar</option>
+                    <option value="3">Marts</option>
+                    <option value="4">April</option>
+                    <option value="5">Maj</option>
+                    <option value="6">Juni</option>
+                    <option value="7">Juli</option>
+                    <option value="8">August</option>
+                    <option value="9">September</option>
+                    <option value="10">Oktober</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
+                </select>
+            </tr>
+        </td>
+        <tr>
+            <td><button type="submit">Vælg måned</button></td>
+        </tr>
+    </table>
+</form>
+<script type="text/javascript">
+    document.getElementById('id').value = "<?php echo $_GET['id'];?>";
+</script>
+<!--<div>
+    <td>Marts</td>
+    <tr th:each = "date: ${march}">
+        <td th:text="${date.getDay()}"/>
+
+        <td>
+    </tr>
+</div>
+<div>
+    <td>April</td>
+    <tr th:each = "date: ${april}">
+        <td th:text="${date.getDay()}"/>
+
+        <td>
+    </tr>
+</div>
+<div>
+    <td>Maj</td>
+    <tr th:each = "date: ${may}">
+        <td th:text="${date.getDay()}"/>
+
+        <td>
+    </tr>
+</div>
+<div>
+    <td>Juni</td>
+    <tr th:each = "date: ${june}">
+        <td th:text="${date.getDay()}"/>
+
+        <td>
+    </tr>
+</div>
+<div>
+    <td>Juli</td>
+    <tr th:each = "date: ${july}">
+        <td th:text="${date.getDay()}"/>
+
+        <td>
+    </tr>
+</div>
+<div>
+    <td>August</td>
+    <tr th:each = "date: ${august}">
+        <td th:text="${date.getDay()}"/>
+
+        <td>
+    </tr>
+</div>
+<div>
+    <td>September</td>
+    <tr th:each = "date: ${september}">
+        <td th:text="${date.getDay()}"/>
+
+        <td>
+    </tr>
+</div>
+<div>
+    <td>Oktober</td>
+    <tr th:each = "date: ${october}">
+        <td th:text="${date.getDay()}"/>
+
+        <td>
+    </tr>
+</div>
+<div>
+    <td>November</td>
+    <tr th:each = "date: ${november}">
+        <td th:text="${date.getDay()}"/>
+
+        <td>
+    </tr>
+</div>
+<div>
+    <td>December</td>
+    <tr th:each = "date: ${december}">
+        <td th:text="${date.getDay()}"/>
+
+        <td>
+    </tr>
+</div> -->
+
+
+
+
+
+</body>
+</html>

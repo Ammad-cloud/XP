@@ -82,7 +82,37 @@ public class CalendarController {
     }
 
 
+    @GetMapping("/calendar/calendarEmployee/{monthId}")
+    public String calendarEmployeeIndex(Model model, @PathVariable("monthId") int monthId) {
+        List<Reservation> reservationList = rr.fetchAll();
+        for(Reservation res : reservationList){
+            calendarService.getCalendarReservation().addReservation(res);
+
+            String firstName = er.read(res.getInstructorId()).getFirstName();
+            String lastName = er.read(res.getInstructorId()).getLastName();
+            res.setInstructorName(String.format("%s %s", firstName, lastName));
+        }
+        model.addAttribute("month", calendarService.getCalendarReservation().returnMonth(monthId));
+
+        model.addAttribute("reservations", rr.fetchAll());
+        return "calendar/calendarEmployee";
+    }
+
+    @PostMapping("/calendar/calendarEmployee")
+    public String calendarEmployeeMonth(@RequestParam int id, Model model){
+        List<Reservation> reservationList = rr.fetchAll();
+        for(Reservation res : reservationList){
+            calendarService.getCalendarReservation().addReservation(res);
 
 
+            String firstName = er.read(res.getInstructorId()).getFirstName();
+            String lastName = er.read(res.getInstructorId()).getLastName();
+            res.setInstructorName(String.format("%s %s", firstName, lastName));
+        }
+        model.addAttribute("month", calendarService.getCalendarReservation().returnMonth(id));
+
+        model.addAttribute("reservations", rr.fetchAll());
+        return "calendar/calendarEmployee";
+    }
 
 }
