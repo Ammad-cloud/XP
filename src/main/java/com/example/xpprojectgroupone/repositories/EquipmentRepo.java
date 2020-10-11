@@ -17,6 +17,7 @@ public class EquipmentRepo {
         this.conn = DatabaseConnectionManager.getDBConnection();
     }
 
+    // Returns the auto generated id
     public int add(Equipment equipment) {
         try {
             PreparedStatement ps = conn.prepareStatement("INSERT INTO Equipment (equipmentType, needsRepair) VALUES (?, ?);",
