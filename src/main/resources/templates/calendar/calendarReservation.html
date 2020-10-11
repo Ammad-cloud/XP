@@ -7,9 +7,11 @@
 </head>
 <body class="backgroundColor">
 <div th:replace="fragments/navbar :: navbar"></div>
+<a href="/home">
 <div>
-    <img style="float: right"  src="/../adventurelogo2.jpeg" width="250" height="100" alt="Billedet er ikke vist">
+    <img href="/home" style="float: right"  src="/../adventurelogo2.jpeg" width="250" height="100" alt="Billedet er ikke vist">
 </div>
+</a>
 <h1 style="margin-left: 40px">Kalender</h1>
 
 <!--<div>
@@ -20,9 +22,8 @@
         <td>
     </tr>
 </div> -->
-<div style="margin-left:40px; margin-top: 50px">
+<div style="margin-left:50px; margin-top: 100px">
 
-    <td>Month</td>
     <br>
     <br>
     <br>
@@ -48,10 +49,10 @@
     </tr>
 </div>
 <form action="/calendar/calendarReservation" method="post">
-    <table style="position:absolute; margin:0; top:170px; left:47%;">
+    <table style="position:absolute; margin:0; top:230px; left:47%;">
         <td >
             <tr>
-                <select class="container dropbtn" name="id" id="id" style="position:absolute; margin:0; top:140px; left:42%;">
+                <select class="container dropbtn" name="id" id="id" style="position:absolute; margin:0; top:200px; left:42%;">
                     <option value="1">Januar</option>
                     <option value="2">Februar</option>
                     <option value="3">Marts</option>

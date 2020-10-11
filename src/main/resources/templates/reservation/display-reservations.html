@@ -4,13 +4,20 @@
         <meta charset="UTF-8">
         <title>Display Reservations</title>
         <link rel = stylesheet href="/../stylesheet.css" type="text/css">
-    </head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
     <body class="backgroundColor">
     <div th:replace="fragments/navbar :: navbar"></div>
     <div>
         <img style="float: right"  src="/../adventurelogo2.jpeg" width="250" height="100" alt="Billedet er ikke vist">
     </div>
     <h1 style="margin-left: 10px">Reservationer</h1>
+    <div class="search-bar">
+        <h2>Søg</h2>
+        <p>Skriv noget i søgefeltet for, at søge efter reservationer baseret på telefonnummer, startdato, slutdato, aktivitet, instruktør eller antal deltagere:</p>
+        <input id="myInput" type="text" placeholder="Søg..">
+        <br>
+    </div>
     <form action="create-reservation.html" method="get">
         <button type="Create" class="btn green-button" style="float: left; margin-top: 35px" formaction="/reservations/create">Opret reservtion</button>
     </form>
@@ -46,4 +53,14 @@
     </table>
     </div>
 </body>
+
+<script>
+    $("#myInput").on("keyup", function() {
+        const value = $(this).val().toLowerCase();
+        console.log("value:", value)
+        $("#main-table tbody tr").filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+    });
+</script>
 </html>

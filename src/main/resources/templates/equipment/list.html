@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Udstyr</title>
     <link rel = stylesheet href="/../stylesheet.css" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body class="backgroundColor">
 <div th:replace="fragments/navbar :: navbar"></div>
@@ -12,12 +13,18 @@
 </div>
 <div style="margin-left:10px">
     <h2>List af udstyr</h2>
+    <div class="search-bar">
+        <h2>Søg</h2>
+        <p>Skriv noget i søgefeltet for, at søge efter aktiviteter baseret på id, udstyrtype, eller reparationsstatus (ja/nej).</p>
+        <input id="myInput" type="text" placeholder="Søg..">
+        <br>
+    </div>
     <form th:action="@{/equipment/list}" method="post">
-        <div style="position:absolute; margin:0; top:150px; left:40%;">
+        <div style="position:absolute; margin:0; top:300px; left:35%;">
             <table>
                 <tr>
                     <td><label>Udstyrstype:</label></td>
-                    <td><select name="type">
+                    <td><select class="container dropbtn" id="id" name="type">
                         <option th:each = "type: ${equipmentTypes}" th:text="${type.type}" th:value="${type.type}"></option>
                     </select></td>
                     <td><button type="submit" value="Filtrér">Filtrér</button>
@@ -54,4 +61,16 @@
     </table>
 </div>
 </body>
+<script>
+    $("#myInput").on("keyup", function() {
+        const value = $(this).val().toLowerCase();
+        console.log("value:", value)
+        $("#main-table tbody tr").filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+    });
+</script>
+<script type="text/javascript">
+    document.getElementById('id').value = "<?php echo $_GET['id'];?>";
+</script>
 </html>
