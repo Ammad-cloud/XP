@@ -1,3 +1,13 @@
+/*
+USER STORIES: 1, 8, 2, 3
+
+En service klasse til Activity
+Klassen skal bruges til at manipulere data og andre specielle funktioner som CRUD ikke kan
+
+ */
+
+
+
 package com.example.xpprojectgroupone.services;
 
 import com.example.xpprojectgroupone.repositories.ActivityRepo;

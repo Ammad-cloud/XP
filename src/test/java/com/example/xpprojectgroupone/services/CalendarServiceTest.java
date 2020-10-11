@@ -1,3 +1,12 @@
+/*
+USER STORIES: 13, 14
+
+Opretter et CalendarService objekt som tester funktionaliter uden at skulle køre hele programmet
+
+ */
+
+
+
 package com.example.xpprojectgroupone.services;
 
 import org.junit.jupiter.api.Test;

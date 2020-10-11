@@ -1,3 +1,15 @@
+/*
+USER STORIES: 1, 8, 2, 3
+
+Dette er Data Access Objektet som tilgår databasen både med input og output
+Det er et simpelt CRUD setup og data manipulation bliver ikke gjort her
+
+Testklasse: ActivityRepoTest
+
+ */
+
+
+
 package com.example.xpprojectgroupone.repositories;
 
 import com.example.xpprojectgroupone.models.Activity;

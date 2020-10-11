@@ -1,3 +1,13 @@
+/*
+USER STORIES: 1, 8, 2, 3
+
+Controller til Activity DTO og DAO
+Bruges til at sende informationer om activity til specifikke views
+
+ */
+
+
+
 package com.example.xpprojectgroupone.controllers;
 
 import com.example.xpprojectgroupone.models.Activity;

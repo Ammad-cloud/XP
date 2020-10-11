@@ -1,3 +1,13 @@
+/*
+USER STORIES: 1, 8, 2, 3
+
+Dette er Data Transfer Object til user stories der omhandler Aktiviteter.
+Klassen er hovedsagligt en container der indeholder informationer om Activity objektet
+
+ */
+
+
+
 package com.example.xpprojectgroupone.models;
 
 import javax.persistence.Entity;
