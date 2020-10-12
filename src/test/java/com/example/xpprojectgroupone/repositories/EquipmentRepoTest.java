@@ -82,7 +82,7 @@ class EquipmentRepoTest {
         int id2 = equipmentRepo.add(eq);
 
         List<Equipment> equipmentList = equipmentRepo.readAll();
-        // It is impossible to test for unknown values. Testing read all does not return empty list
+        // It is impossible to test for unknown values. Testing that read all does not return empty list
         assertTrue(equipmentList.size() > 0);
     }
 

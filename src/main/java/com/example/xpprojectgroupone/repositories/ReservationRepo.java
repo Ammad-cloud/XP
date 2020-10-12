@@ -55,10 +55,10 @@ public class ReservationRepo {
         return reservations;
     }
 
-    public void add(Reservation reservation) {
+    public int add(Reservation reservation) {
         String sql = "INSERT INTO Booking VALUES(default, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
-            PreparedStatement ps = conn.prepareStatement(sql);
+            PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, reservation.getStartDate().replace("T", " "));
             ps.setString(2, reservation.getEndDate().replace("T", " "));
             ps.setInt(3, reservation.getCustomerPhoneNumber());
@@ -68,9 +68,15 @@ public class ReservationRepo {
             ps.setInt(7, reservation.getEquipmentAmount());
             ps.setInt(8, reservation.getParticipants());
             ps.executeUpdate();
+
+            // Getting auto generated ID
+            ResultSet rs = ps.getGeneratedKeys();
+            rs.next();
+            return rs.getInt(1);
         } catch (SQLException e) {
             System.out.println(e);
         }
+        return -1;
     }
 
     // NOT WORKING/TESTED
@@ -117,7 +123,7 @@ public class ReservationRepo {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
-            while(rs.next()) {
+            if(rs.next()) {
                 reservation.setId(rs.getInt("id"));
                 reservation.setStartDate(rs.getString("startDate"));
                 reservation.setEndDate(rs.getString("endDate"));
@@ -127,6 +133,8 @@ public class ReservationRepo {
                 reservation.setEquipmentId(rs.getInt("equipmentId"));
                 reservation.setEquipmentAmount(rs.getInt("equipmentAmount"));
                 reservation.setParticipants(rs.getInt("participants"));
+            } else{
+                return null;
             }
         } catch(SQLException e) {
             System.out.println(e);

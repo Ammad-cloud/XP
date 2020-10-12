@@ -17,4 +17,9 @@ public class EquipmentType {
     public void setType(String type) {
         this.type = type;
     }
+
+    @Override
+    public String toString(){
+        return String.format("Type: %s", type);
+    }
 }
