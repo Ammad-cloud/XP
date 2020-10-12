@@ -169,8 +169,8 @@ hr {
     position: sticky;
     top: -1px;
     z-index: 10;
-    color: #fff;
-    background-color: gray;
+    color: black;
+    background-color: #f5f5f5;
 }
 
 .btn {
