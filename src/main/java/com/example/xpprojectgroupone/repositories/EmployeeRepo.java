@@ -2,12 +2,10 @@ package com.example.xpprojectgroupone.repositories;
 
 import com.example.xpprojectgroupone.models.Employee;
 import com.example.xpprojectgroupone.utilities.DatabaseConnectionManager;
+import com.mysql.cj.protocol.Resultset;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,20 +18,24 @@ public class EmployeeRepo {
     }
 
 
-    public boolean add(Employee model) {
+    public int add(Employee model) {
+        String sql = "INSERT INTO instructor" + "(firstName, lastName, activityId)VALUES" + "(?,?,?);";
         try {
-            PreparedStatement addEmployee = conn.prepareStatement("INSERT INTO instructor" + "(firstName, lastName, activityId)VALUES" + "(?,?,?);");
+            PreparedStatement addEmployee = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             addEmployee.setString(1, model.getFirstName());
             addEmployee.setString(2, model.getLastName());
             addEmployee.setInt(3, model.getActivityId());
 
             addEmployee.executeUpdate();
-            return true;
 
+            // Getting auto generated ID
+            ResultSet rs = addEmployee.getGeneratedKeys();
+            rs.next();
+            return rs.getInt(1);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return false;
+        return -1;
     }
 
     public Employee read(int id) {
@@ -41,11 +43,13 @@ public class EmployeeRepo {
         try {
             PreparedStatement getSingleEmployee = conn.prepareStatement("SELECT * FROM instructor WHERE id=" + id);
             ResultSet rs = getSingleEmployee.executeQuery();
-            while (rs.next()) {
+            if(rs.next()) {
                 employeeToReturn.setId((rs.getInt(1)));
                 employeeToReturn.setFirstName(rs.getString(2));
                 employeeToReturn.setLastName(rs.getString(3));
                 employeeToReturn.setActivityId(rs.getInt(4));
+            } else{
+                return null;
             }
         } catch (SQLException s) {
             s.printStackTrace();

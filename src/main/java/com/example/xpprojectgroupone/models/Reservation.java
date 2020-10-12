@@ -133,4 +133,10 @@ public class Reservation {
     public String getEndTime(){
         return this.endDate.substring(11, 16);
     }
+
+    public String toString(){
+        return String.format("ID: %d, startDate: %s, endDate: %s, phoneNumber: %d, instructorID: %d, activityID: %d," +
+                "equipmentID: %d, equipmentAmount: %d, participants: %d", id, startDate, endDate, customerPhoneNumber, instructorId,
+                activityId, equipmentId, equipmentAmount, participants);
+    }
 }

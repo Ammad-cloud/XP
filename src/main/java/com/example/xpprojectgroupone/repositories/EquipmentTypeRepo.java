@@ -48,4 +48,22 @@ public class EquipmentTypeRepo {
         return equipmentTypes;
     }
 
+    public EquipmentType read(String type){
+        String sql = "SELECT * FROM EquipmentTypes WHERE equipmentType = ?";
+        EquipmentType equipmentTypeToReturn = new EquipmentType();
+        try{
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, type);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                equipmentTypeToReturn.setType(rs.getString(1));
+            } else{
+                return null;
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return equipmentTypeToReturn;
+    }
+
 }
