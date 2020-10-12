@@ -42,7 +42,7 @@ import java.util.ArrayList;
 
             int totalPrice = (sodaPrice * 20) + (hariboPrice * 20) + (tshirtPrice * 129);
             model.addAttribute("totalprice", totalPrice);
-            System.out.println(totalPrice + "kr");
+            System.out.println(totalPrice + "kr     ");
 
 
             return "/home/shop";
